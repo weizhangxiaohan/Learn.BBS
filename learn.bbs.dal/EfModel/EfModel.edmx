@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EfModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bbs_area">
+          <Key>
+            <PropertyRef Name="area_uid" />
+          </Key>
+          <Property Name="area_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="area_url" Type="nvarchar" MaxLength="256" />
+          <Property Name="area_name" Type="nvarchar" MaxLength="256" />
+          <Property Name="begin_time" Type="datetime" />
+          <Property Name="end_time" Type="datetime" />
+          <Property Name="post_count" Type="int" />
+          <Property Name="appraise_type" Type="tinyint" />
+          <Property Name="is_allow_reply" Type="tinyint" />
+          <Property Name="area_status" Type="tinyint" />
+          <Property Name="remark" Type="nvarchar" MaxLength="2000" />
+          <Property Name="sort_number" Type="int" />
+          <Property Name="creator" Type="nvarchar" MaxLength="64" />
+          <Property Name="creator_uid" Type="uniqueidentifier" />
+          <Property Name="create_time" Type="datetime" />
+          <Property Name="last_modify_user" Type="nvarchar" MaxLength="64" />
+          <Property Name="last_modify_user_uid" Type="uniqueidentifier" />
+          <Property Name="last_modify_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="bbs_area_dept">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="area_uid" Type="uniqueidentifier" />
+          <Property Name="dept_uid" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="bbs_area_position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="area_uid" Type="uniqueidentifier" />
+          <Property Name="position_uid" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="bbs_like">
+          <Key>
+            <PropertyRef Name="like_uid" />
+          </Key>
+          <Property Name="like_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_uid" Type="uniqueidentifier" />
+          <Property Name="post_uid" Type="uniqueidentifier" />
+          <Property Name="create_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="bbs_post">
+          <Key>
+            <PropertyRef Name="post_uid" />
+          </Key>
+          <Property Name="post_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="area_uid" Type="uniqueidentifier" />
+          <Property Name="title" Type="nvarchar" MaxLength="256" />
+          <Property Name="content" Type="ntext" />
+          <Property Name="creator_uid" Type="uniqueidentifier" />
+          <Property Name="creator" Type="nvarchar" MaxLength="64" />
+          <Property Name="create_time" Type="datetime" />
+          <Property Name="visit_times" Type="int" />
+          <Property Name="reply_times" Type="int" />
+          <Property Name="like_times" Type="int" />
+          <Property Name="star_times" Type="int" />
+          <Property Name="recommend_times" Type="int" />
+          <Property Name="last_reply_time" Type="datetime" />
+          <Property Name="last_update_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="bbs_post_resource">
+          <Key>
+            <PropertyRef Name="resource_uid" />
+          </Key>
+          <Property Name="resource_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="post_uid" Type="uniqueidentifier" />
+          <Property Name="resource_type" Type="tinyint" />
+          <Property Name="resource_url" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="bbs_recommend">
+          <Key>
+            <PropertyRef Name="recommend_uid" />
+          </Key>
+          <Property Name="recommend_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_uid" Type="uniqueidentifier" />
+          <Property Name="post_uid" Type="uniqueidentifier" />
+          <Property Name="create_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="bbs_reply">
+          <Key>
+            <PropertyRef Name="reply_uid" />
+          </Key>
+          <Property Name="reply_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="post_uid" Type="uniqueidentifier" />
+          <Property Name="content" Type="ntext" />
+          <Property Name="creator_uid" Type="uniqueidentifier" />
+          <Property Name="creator" Type="nvarchar" MaxLength="64" />
+          <Property Name="create_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="bbs_star">
+          <Key>
+            <PropertyRef Name="star_uid" />
+          </Key>
+          <Property Name="star_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_uid" Type="uniqueidentifier" />
+          <Property Name="post_uid" Type="uniqueidentifier" />
+          <Property Name="star_level" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="bbs_subreply">
+          <Key>
+            <PropertyRef Name="subreply_uid" />
+          </Key>
+          <Property Name="subreply_uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="reply_uid" Type="uniqueidentifier" />
+          <Property Name="post_uid" Type="uniqueidentifier" />
+          <Property Name="content" Type="ntext" />
+          <Property Name="creator_uid" Type="uniqueidentifier" />
+          <Property Name="creator" Type="nvarchar" MaxLength="64" />
+          <Property Name="create_time" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="EfModelsStoreContainer">
+          <EntitySet Name="bbs_area" EntityType="Self.bbs_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_area_dept" EntityType="Self.bbs_area_dept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_area_position" EntityType="Self.bbs_area_position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_like" EntityType="Self.bbs_like" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_post" EntityType="Self.bbs_post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_post_resource" EntityType="Self.bbs_post_resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_recommend" EntityType="Self.bbs_recommend" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_reply" EntityType="Self.bbs_reply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_star" EntityType="Self.bbs_star" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bbs_subreply" EntityType="Self.bbs_subreply" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EfModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bbs_area">
+          <Key>
+            <PropertyRef Name="area_uid" />
+          </Key>
+          <Property Name="area_uid" Type="Guid" Nullable="false" />
+          <Property Name="area_url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="area_name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="begin_time" Type="DateTime" Precision="3" />
+          <Property Name="end_time" Type="DateTime" Precision="3" />
+          <Property Name="post_count" Type="Int32" />
+          <Property Name="appraise_type" Type="Byte" />
+          <Property Name="is_allow_reply" Type="Byte" />
+          <Property Name="area_status" Type="Byte" />
+          <Property Name="remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="sort_number" Type="Int32" />
+          <Property Name="creator" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="creator_uid" Type="Guid" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+          <Property Name="last_modify_user" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="last_modify_user_uid" Type="Guid" />
+          <Property Name="last_modify_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="bbs_area_dept">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="area_uid" Type="Guid" />
+          <Property Name="dept_uid" Type="Guid" />
+        </EntityType>
+        <EntityType Name="bbs_area_position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="area_uid" Type="Guid" />
+          <Property Name="position_uid" Type="Guid" />
+        </EntityType>
+        <EntityType Name="bbs_like">
+          <Key>
+            <PropertyRef Name="like_uid" />
+          </Key>
+          <Property Name="like_uid" Type="Guid" Nullable="false" />
+          <Property Name="user_uid" Type="Guid" />
+          <Property Name="post_uid" Type="Guid" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="bbs_post">
+          <Key>
+            <PropertyRef Name="post_uid" />
+          </Key>
+          <Property Name="post_uid" Type="Guid" Nullable="false" />
+          <Property Name="area_uid" Type="Guid" />
+          <Property Name="title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="creator_uid" Type="Guid" />
+          <Property Name="creator" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+          <Property Name="visit_times" Type="Int32" />
+          <Property Name="reply_times" Type="Int32" />
+          <Property Name="like_times" Type="Int32" />
+          <Property Name="star_times" Type="Int32" />
+          <Property Name="recommend_times" Type="Int32" />
+          <Property Name="last_reply_time" Type="DateTime" Precision="3" />
+          <Property Name="last_update_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="bbs_post_resource">
+          <Key>
+            <PropertyRef Name="resource_uid" />
+          </Key>
+          <Property Name="resource_uid" Type="Guid" Nullable="false" />
+          <Property Name="post_uid" Type="Guid" />
+          <Property Name="resource_type" Type="Byte" />
+          <Property Name="resource_url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="bbs_recommend">
+          <Key>
+            <PropertyRef Name="recommend_uid" />
+          </Key>
+          <Property Name="recommend_uid" Type="Guid" Nullable="false" />
+          <Property Name="user_uid" Type="Guid" />
+          <Property Name="post_uid" Type="Guid" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="bbs_reply">
+          <Key>
+            <PropertyRef Name="reply_uid" />
+          </Key>
+          <Property Name="reply_uid" Type="Guid" Nullable="false" />
+          <Property Name="post_uid" Type="Guid" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="creator_uid" Type="Guid" />
+          <Property Name="creator" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="bbs_star">
+          <Key>
+            <PropertyRef Name="star_uid" />
+          </Key>
+          <Property Name="star_uid" Type="Guid" Nullable="false" />
+          <Property Name="user_uid" Type="Guid" />
+          <Property Name="post_uid" Type="Guid" />
+          <Property Name="star_level" Type="Byte" />
+        </EntityType>
+        <EntityType Name="bbs_subreply">
+          <Key>
+            <PropertyRef Name="subreply_uid" />
+          </Key>
+          <Property Name="subreply_uid" Type="Guid" Nullable="false" />
+          <Property Name="reply_uid" Type="Guid" />
+          <Property Name="post_uid" Type="Guid" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="creator_uid" Type="Guid" />
+          <Property Name="creator" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="BbsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bbs_area" EntityType="Self.bbs_area" />
+          <EntitySet Name="bbs_area_dept" EntityType="Self.bbs_area_dept" />
+          <EntitySet Name="bbs_area_position" EntityType="Self.bbs_area_position" />
+          <EntitySet Name="bbs_like" EntityType="Self.bbs_like" />
+          <EntitySet Name="bbs_post" EntityType="Self.bbs_post" />
+          <EntitySet Name="bbs_post_resource" EntityType="Self.bbs_post_resource" />
+          <EntitySet Name="bbs_recommend" EntityType="Self.bbs_recommend" />
+          <EntitySet Name="bbs_reply" EntityType="Self.bbs_reply" />
+          <EntitySet Name="bbs_star" EntityType="Self.bbs_star" />
+          <EntitySet Name="bbs_subreply" EntityType="Self.bbs_subreply" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EfModelsStoreContainer" CdmEntityContainer="BbsContext">
+          <EntitySetMapping Name="bbs_area">
+            <EntityTypeMapping TypeName="EfModels.bbs_area">
+              <MappingFragment StoreEntitySet="bbs_area">
+                <ScalarProperty Name="area_uid" ColumnName="area_uid" />
+                <ScalarProperty Name="area_url" ColumnName="area_url" />
+                <ScalarProperty Name="area_name" ColumnName="area_name" />
+                <ScalarProperty Name="begin_time" ColumnName="begin_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="post_count" ColumnName="post_count" />
+                <ScalarProperty Name="appraise_type" ColumnName="appraise_type" />
+                <ScalarProperty Name="is_allow_reply" ColumnName="is_allow_reply" />
+                <ScalarProperty Name="area_status" ColumnName="area_status" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="sort_number" ColumnName="sort_number" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="creator_uid" ColumnName="creator_uid" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="last_modify_user" ColumnName="last_modify_user" />
+                <ScalarProperty Name="last_modify_user_uid" ColumnName="last_modify_user_uid" />
+                <ScalarProperty Name="last_modify_time" ColumnName="last_modify_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_area_dept">
+            <EntityTypeMapping TypeName="EfModels.bbs_area_dept">
+              <MappingFragment StoreEntitySet="bbs_area_dept">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="area_uid" ColumnName="area_uid" />
+                <ScalarProperty Name="dept_uid" ColumnName="dept_uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_area_position">
+            <EntityTypeMapping TypeName="EfModels.bbs_area_position">
+              <MappingFragment StoreEntitySet="bbs_area_position">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="area_uid" ColumnName="area_uid" />
+                <ScalarProperty Name="position_uid" ColumnName="position_uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_like">
+            <EntityTypeMapping TypeName="EfModels.bbs_like">
+              <MappingFragment StoreEntitySet="bbs_like">
+                <ScalarProperty Name="like_uid" ColumnName="like_uid" />
+                <ScalarProperty Name="user_uid" ColumnName="user_uid" />
+                <ScalarProperty Name="post_uid" ColumnName="post_uid" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_post">
+            <EntityTypeMapping TypeName="EfModels.bbs_post">
+              <MappingFragment StoreEntitySet="bbs_post">
+                <ScalarProperty Name="post_uid" ColumnName="post_uid" />
+                <ScalarProperty Name="area_uid" ColumnName="area_uid" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="creator_uid" ColumnName="creator_uid" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="visit_times" ColumnName="visit_times" />
+                <ScalarProperty Name="reply_times" ColumnName="reply_times" />
+                <ScalarProperty Name="like_times" ColumnName="like_times" />
+                <ScalarProperty Name="star_times" ColumnName="star_times" />
+                <ScalarProperty Name="recommend_times" ColumnName="recommend_times" />
+                <ScalarProperty Name="last_reply_time" ColumnName="last_reply_time" />
+                <ScalarProperty Name="last_update_time" ColumnName="last_update_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_post_resource">
+            <EntityTypeMapping TypeName="EfModels.bbs_post_resource">
+              <MappingFragment StoreEntitySet="bbs_post_resource">
+                <ScalarProperty Name="resource_uid" ColumnName="resource_uid" />
+                <ScalarProperty Name="post_uid" ColumnName="post_uid" />
+                <ScalarProperty Name="resource_type" ColumnName="resource_type" />
+                <ScalarProperty Name="resource_url" ColumnName="resource_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_recommend">
+            <EntityTypeMapping TypeName="EfModels.bbs_recommend">
+              <MappingFragment StoreEntitySet="bbs_recommend">
+                <ScalarProperty Name="recommend_uid" ColumnName="recommend_uid" />
+                <ScalarProperty Name="user_uid" ColumnName="user_uid" />
+                <ScalarProperty Name="post_uid" ColumnName="post_uid" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_reply">
+            <EntityTypeMapping TypeName="EfModels.bbs_reply">
+              <MappingFragment StoreEntitySet="bbs_reply">
+                <ScalarProperty Name="reply_uid" ColumnName="reply_uid" />
+                <ScalarProperty Name="post_uid" ColumnName="post_uid" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="creator_uid" ColumnName="creator_uid" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_star">
+            <EntityTypeMapping TypeName="EfModels.bbs_star">
+              <MappingFragment StoreEntitySet="bbs_star">
+                <ScalarProperty Name="star_uid" ColumnName="star_uid" />
+                <ScalarProperty Name="user_uid" ColumnName="user_uid" />
+                <ScalarProperty Name="post_uid" ColumnName="post_uid" />
+                <ScalarProperty Name="star_level" ColumnName="star_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bbs_subreply">
+            <EntityTypeMapping TypeName="EfModels.bbs_subreply">
+              <MappingFragment StoreEntitySet="bbs_subreply">
+                <ScalarProperty Name="subreply_uid" ColumnName="subreply_uid" />
+                <ScalarProperty Name="reply_uid" ColumnName="reply_uid" />
+                <ScalarProperty Name="post_uid" ColumnName="post_uid" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="creator_uid" ColumnName="creator_uid" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

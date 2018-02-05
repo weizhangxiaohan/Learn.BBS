@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD31CC98-541F-40D9-96B3-B134E9FA1965}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>learn.bbs.dal</RootNamespace>
+    <AssemblyName>learn.bbs.dal</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AreaDAO.cs" />
+    <Compile Include="BbsDbContext.cs" />
+    <Compile Include="EfModel\bbs_area.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_area_dept.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_area_position.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_like.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_post.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_post_resource.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_recommend.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_reply.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_star.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\bbs_subreply.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\EfModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EfModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\EfModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfModel\EfModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EfModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="EfModel\EfModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EfModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EfModel\EfModel.edmx.diagram">
+      <DependentUpon>EfModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EfModel\EfModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EfModel.edmx</DependentUpon>
+      <LastGenOutput>EfModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EfModel\EfModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EfModel.edmx</DependentUpon>
+      <LastGenOutput>EfModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

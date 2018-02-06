@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50FEC290-32C2-4DB6-98E2-42E87DE972F3}</ProjectGuid>
+    <ProjectGuid>{B2DD500C-CC5F-483B-98D0-B09F22022F66}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>learn.bbs.bl</RootNamespace>
-    <AssemblyName>learn.bbs.bl</AssemblyName>
+    <RootNamespace>learn.bbs.utility</RootNamespace>
+    <AssemblyName>learn.bbs.utility</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,20 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaBO.cs" />
-    <Compile Include="Auth\LearnUser.cs" />
-    <Compile Include="HttpModule\LearnAuthModule.cs" />
+    <Compile Include="DESEncrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\learn.bbs.dal\learn.bbs.dal.csproj">
-      <Project>{dd31cc98-541f-40d9-96b3-b134e9fa1965}</Project>
-      <Name>learn.bbs.dal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\learn.bbs.utility\learn.bbs.utility.csproj">
-      <Project>{b2dd500c-cc5f-483b-98d0-b09f22022f66}</Project>
-      <Name>learn.bbs.utility</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EfModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EfModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bbs_area">
           <Key>
             <PropertyRef Name="area_uid" />
@@ -121,6 +121,15 @@
           <Property Name="creator" Type="nvarchar" MaxLength="64" />
           <Property Name="create_time" Type="datetime" />
         </EntityType>
+        <EntityType Name="learn_user">
+          <Key>
+            <PropertyRef Name="user_uid" />
+          </Key>
+          <Property Name="display_name" Type="nvarchar" MaxLength="64" />
+          <Property Name="password" Type="nvarchar" MaxLength="64" />
+          <Property Name="login_name" Type="nvarchar" MaxLength="64" />
+          <Property Name="user_uid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="EfModelsStoreContainer">
           <EntitySet Name="bbs_area" EntityType="Self.bbs_area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bbs_area_dept" EntityType="Self.bbs_area_dept" Schema="dbo" store:Type="Tables" />
@@ -132,9 +141,9 @@
           <EntitySet Name="bbs_reply" EntityType="Self.bbs_reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bbs_star" EntityType="Self.bbs_star" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bbs_subreply" EntityType="Self.bbs_subreply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="learn_user" EntityType="Self.learn_user" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EfModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -265,7 +274,17 @@
           <EntitySet Name="bbs_reply" EntityType="Self.bbs_reply" />
           <EntitySet Name="bbs_star" EntityType="Self.bbs_star" />
           <EntitySet Name="bbs_subreply" EntityType="Self.bbs_subreply" />
+          <EntitySet Name="learn_user" EntityType="EfModels.learn_user" />
         </EntityContainer>
+        <EntityType Name="learn_user">
+          <Key>
+            <PropertyRef Name="user_uid" />
+          </Key>
+          <Property Name="display_name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="login_name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="user_uid" Type="Guid" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -395,6 +414,16 @@
                 <ScalarProperty Name="creator_uid" ColumnName="creator_uid" />
                 <ScalarProperty Name="creator" ColumnName="creator" />
                 <ScalarProperty Name="create_time" ColumnName="create_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="learn_user">
+            <EntityTypeMapping TypeName="EfModels.learn_user">
+              <MappingFragment StoreEntitySet="learn_user">
+                <ScalarProperty Name="user_uid" ColumnName="user_uid" />
+                <ScalarProperty Name="login_name" ColumnName="login_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="display_name" ColumnName="display_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

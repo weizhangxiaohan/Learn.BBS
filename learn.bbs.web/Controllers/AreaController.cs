@@ -13,14 +13,6 @@ namespace learn.bbs.web.Controllers
     {
         private AreaBO areaBO = new AreaBO();
         private static int _pageSize = 10;
-        //private static int 
-
-        // GET: Area
-        public ActionResult List()
-        {
-            var model = areaBO.GetAllArea();
-            return View(model);
-        }
 
         public ActionResult Search()
         {
@@ -29,14 +21,11 @@ namespace learn.bbs.web.Controllers
         }
 
         [Route("area/page/{index:int?}")]
-        public ActionResult Areas(int index = 1)
+        public ActionResult GetAreasByPage(int index = 1)
         {
             ViewBag.Title = "一页主题";
-            ViewBag.Description = "一页主题";
-
 
             var model = areaBO.GetAllArea().OrderByDescending(a => a.last_modify_time).Skip((index - 1) * _pageSize).Take(_pageSize).ToList();
-
             return View("List", model);
         }
 

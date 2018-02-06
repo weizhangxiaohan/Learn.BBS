@@ -35,5 +35,6 @@ namespace learn.bbs.dal.EfModel
         public virtual DbSet<bbs_reply> bbs_reply { get; set; }
         public virtual DbSet<bbs_star> bbs_star { get; set; }
         public virtual DbSet<bbs_subreply> bbs_subreply { get; set; }
+        public virtual DbSet<learn_user> learn_user { get; set; }
     }
 }

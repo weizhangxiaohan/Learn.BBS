@@ -1,24 +1,24 @@
 ﻿
 @{
-    ViewBag.Title = "Add";
-    Layout = "~/Views/Shared/_LayoutBBS.cshtml";
+    ViewBag.Title = "添加主题";
 }
+@model learn.bbs.web.Models.AreaViewModel
 
 <form class="container" action="/area/add" method="post">
     <div class="form-group">
-        <label class="form-control" for="area_name">主题名称</label>
+        <label class="form-control" for="area_name">@Html.DisplayNameFor(m => m.area_name)</label>
         <input type="text" class="form-control" id="area_name" name="area_name"/>
     </div>
     <div class="form-group">
-        <label class="form-control">开始时间</label>
+        <label class="form-control">@Html.DisplayNameFor(m => m.begin_time)</label>
         <input type="datetime" class="form-control" id="begin_time" name="begin_time"/>
     </div>
     <div class="form-group">
-        <label class="form-control">结束时间</label>
+        <label class="form-control">@Html.DisplayNameFor(m => m.end_time)</label>
         <input type="datetime" class="form-control" id="end_time" name="end_time" />
     </div>
     <div class="form-group">
-        <label >评论方式：</label>
+        <label >@Html.DisplayNameFor(m=>m.appraise_type)：</label>
         <label class="radio-inline">
             <input type="radio" name="appraise_type" id="inlineRadio1" value="1"> 点赞
         </label>
@@ -35,7 +35,7 @@
         </label>
     </div>
     <div class="form-group">
-        <label>主题状态：</label>
+        <label>@Html.DisplayNameFor(m => m.area_status)：</label>
         <label class="radio-inline">
             <input type="radio" name="area_status" id="inlineRadio1" value="1"> 草稿
         </label>
@@ -44,7 +44,7 @@
         </label>
     </div>
 
-    <label>说明</label>
+    <label>@Html.DisplayNameFor(m=>m.remark)</label>
     <textarea class="form-control" rows="3" name="remark"></textarea>
     <br/>
     <button type="submit" class="btn btn-success">保存</button>

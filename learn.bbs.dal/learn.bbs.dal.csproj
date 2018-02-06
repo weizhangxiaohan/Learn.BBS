@@ -98,6 +98,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EfModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EfModel\learn_user.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

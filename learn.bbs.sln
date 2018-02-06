@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn.bbs.dal", "learn.bbs.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn.model", "learn.model\learn.model.csproj", "{14A73186-1F8F-4344-BB3E-F8FC5E5E5FAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn.bbs.utility", "learn.bbs.utility\learn.bbs.utility.csproj", "{B2DD500C-CC5F-483B-98D0-B09F22022F66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{14A73186-1F8F-4344-BB3E-F8FC5E5E5FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14A73186-1F8F-4344-BB3E-F8FC5E5E5FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14A73186-1F8F-4344-BB3E-F8FC5E5E5FAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DD500C-CC5F-483B-98D0-B09F22022F66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DD500C-CC5F-483B-98D0-B09F22022F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DD500C-CC5F-483B-98D0-B09F22022F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DD500C-CC5F-483B-98D0-B09F22022F66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

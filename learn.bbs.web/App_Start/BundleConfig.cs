@@ -20,6 +20,7 @@ namespace learn.bbs.web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/jquery-1.10.2.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 

@@ -14,9 +14,12 @@ namespace learn.bbs.web.Controllers
         private AreaBO areaBO = new AreaBO();
         private static int _pageSize = 10;
 
-        public ActionResult Search()
+        [HttpPost]
+        public ActionResult Search(string area_name,byte? area_status)
         {
-            var model = areaBO.FindByCondition(area => area.area_name.Contains(Request["area_name"])).Take(_pageSize).ToList();
+            var model = areaBO.FindByCondition(area => area.area_name.Contains(area_name))
+                .Where(a => a.area_status == area_status)
+                .Take(_pageSize).ToList();
             return View("List", model);
         }
 
@@ -35,7 +38,7 @@ namespace learn.bbs.web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(AreaViewModel model)
+        public ActionResult Add(AddAreaViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -47,6 +50,7 @@ namespace learn.bbs.web.Controllers
                 area.area_url = model.area_url;
                 area.begin_time = model.begin_time;
                 area.end_time = model.end_time;
+                area.creator = this.User.Identity.Name;
                 area.create_time = DateTime.Now;
                 area.last_modify_time = DateTime.Now;
                 area.is_allow_reply = 1;
@@ -55,7 +59,7 @@ namespace learn.bbs.web.Controllers
                 areaBO.Add(area);
             }
 
-            return RedirectToAction("areas", new { index = 1 });
+            return RedirectToAction("page", new { index = 1 });
         }
 
         [HttpPost]
@@ -66,7 +70,7 @@ namespace learn.bbs.web.Controllers
                 var areaUid = Guid.Parse(item);
                 areaBO.Delete(areaUid);
             }
-            return RedirectToAction("areas", new { index = 1 });
+            return RedirectToAction("page", new { index = 1 });
         }
     }
 }

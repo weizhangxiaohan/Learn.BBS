@@ -16,15 +16,15 @@ namespace learn.bbs.web
             routes.MapMvcAttributeRoutes();//启用Attribute路由
 
             routes.MapRoute(
-                name: "BBS",
-                url: "api/{controller}/{action}/{id}",
+                name: "Default",
+                url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 constraints: new { controller = "[a-z]+" }
             );
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
+                name: "BBS",
+                url: "api/{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 constraints: new { controller = "[a-z]+" }
             );

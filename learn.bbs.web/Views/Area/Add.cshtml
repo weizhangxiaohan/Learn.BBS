@@ -2,20 +2,24 @@
 @{
     ViewBag.Title = "添加主题";
 }
-@model learn.bbs.web.Models.AreaViewModel
+@model learn.bbs.web.Models.AddAreaViewModel
 
 <form class="container" action="/area/add" method="post">
     <div class="form-group">
-        <label class="form-control" for="area_name">@Html.DisplayNameFor(m => m.area_name)</label>
-        <input type="text" class="form-control" id="area_name" name="area_name"/>
+        <label for="area_name">@Html.DisplayNameFor(m => m.area_name)</label>
+        @*<input type="text" class="form-control" id="area_name" name="area_name"/>*@
+        @Html.TextBoxFor(m=>m.area_name,new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.area_name)
     </div>
     <div class="form-group">
-        <label class="form-control">@Html.DisplayNameFor(m => m.begin_time)</label>
-        <input type="datetime" class="form-control" id="begin_time" name="begin_time"/>
+        <label>@Html.DisplayNameFor(m => m.begin_time)</label>
+        @Html.TextBoxFor(m => m.begin_time, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.begin_time)
     </div>
     <div class="form-group">
-        <label class="form-control">@Html.DisplayNameFor(m => m.end_time)</label>
-        <input type="datetime" class="form-control" id="end_time" name="end_time" />
+        <label>@Html.DisplayNameFor(m => m.end_time)</label>
+        @Html.TextBoxFor(m => m.end_time, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.end_time)
     </div>
     <div class="form-group">
         <label >@Html.DisplayNameFor(m=>m.appraise_type)：</label>
@@ -30,8 +34,9 @@
         </label>
     </div>
     <div class="checkbox">
+        <label>开启评论</label>
         <label>
-            <input type="checkbox" id="is_allow_reply" name="is_allow_reply" value="1"> 开启评论
+            <input type="checkbox" id="is_allow_reply" name="is_allow_reply" value="1"> 
         </label>
     </div>
     <div class="form-group">
@@ -45,7 +50,8 @@
     </div>
 
     <label>@Html.DisplayNameFor(m=>m.remark)</label>
-    <textarea class="form-control" rows="3" name="remark"></textarea>
+    @Html.TextAreaFor(m=>m.remark,new { @class="form-control",rows = "5"})
+    @Html.ValidationMessageFor(m=>m.remark)
     <br/>
     <button type="submit" class="btn btn-success">保存</button>
 </form>

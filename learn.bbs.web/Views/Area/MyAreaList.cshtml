@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "我的主题";
+}
+@using learn.bbs.dal.EfModel
+@model IList<bbs_area>
+
+<h2>MyAreaList</h2>
+
+<div class="container">
+
+    @{
+        int index = 0;
+        foreach (bbs_area item in Model)
+        {
+            index = index + 1;
+            if (index % 4 == 1)
+            {
+                Output.Write("<div class='row' index='qwer'>");
+            }
+            <div class="col-lg-3">
+                <a href="/post/page">
+                    <img src="~/Images/logo.png" />
+                    @item.area_name
+                </a>
+            </div>
+            if (index % 4 == 0)
+            {
+                Output.Write("</div>");
+            }
+        }
+    }
+
+</div>
+

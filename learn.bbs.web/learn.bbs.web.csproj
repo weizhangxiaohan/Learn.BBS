@@ -154,10 +154,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddAreaViewModel.cs" />
+    <Compile Include="Models\AddPostViewModel.cs" />
     <Compile Include="Models\AreaListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -205,6 +207,8 @@
     <Content Include="Views\Area\List.cshtml" />
     <Content Include="Views\Shared\Pager.cshtml" />
     <Content Include="Views\Area\Add.cshtml" />
+    <Content Include="Views\Area\MyAreaList.cshtml" />
+    <Content Include="Views\Post\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

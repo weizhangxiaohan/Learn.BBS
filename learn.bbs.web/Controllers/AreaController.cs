@@ -32,6 +32,15 @@ namespace learn.bbs.web.Controllers
             return View("List", model);
         }
 
+        [Route("area/mine/{index:int?}")]
+        public ActionResult GetMyAreasByPage(int index = 1)
+        {
+            ViewBag.Title = "我的主题";
+
+            var model = areaBO.GetAllArea().OrderByDescending(a => a.last_modify_time).Skip((index - 1) * _pageSize).Take(_pageSize).ToList();
+            return View("MyAreaList", model);
+        }
+
         public ActionResult Add()
         {
             return View();

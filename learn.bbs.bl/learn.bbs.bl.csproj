@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="AreaBO.cs" />
     <Compile Include="Auth\LearnUser.cs" />
+    <Compile Include="DTOs\PostDTO.cs" />
     <Compile Include="HttpModule\LearnAuthModule.cs" />
+    <Compile Include="PostBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,5 +58,6 @@
       <Name>learn.bbs.utility</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

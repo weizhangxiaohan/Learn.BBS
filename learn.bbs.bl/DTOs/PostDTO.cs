@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace learn.bbs.bl.DTOs
 {
-    public class PostDTO
+    public struct PostInfo
     {
+        public Guid AreaUid { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
     }

@@ -11,7 +11,7 @@ namespace learn.bbs.web.Controllers
 {
     public class AreaController : Controller
     {
-        private AreaBO areaBO = new AreaBO();
+        private AreaDO areaBO = new AreaDO();
         private static int _pageSize = 10;
 
         [HttpPost]

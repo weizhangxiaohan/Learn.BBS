@@ -11,6 +11,9 @@ namespace learn.bbs.bl
 {
     public class PostBO
     {
+        public string Title { get; set; }
+        public string Content { get; set; }
+
         private PostDAO postDAO = new PostDAO();
 
         public IList<bbs_post> GetAllPost()
@@ -23,9 +26,13 @@ namespace learn.bbs.bl
             return GetAllPost().AsEnumerable().Where<bbs_post>(f).ToList<bbs_post>();
         }
 
-        public void PublishPost(PostDTO dto)
+        public void PublishPost(PostInfo dto)
         {
             var entity = new bbs_post();
+            entity.post_uid = Guid.NewGuid();
+            entity.create_time = DateTime.Now;
+            entity.creator = "";
+            entity.area_uid = dto.AreaUid;
             entity.title = dto.Title;
             entity.content = dto.Content;
             postDAO.AddPost(entity);
@@ -34,6 +41,11 @@ namespace learn.bbs.bl
         public void Delete(Guid postUid)
         {
             postDAO.DeletePost(postUid);
+        }
+
+        public IList<bbs_post> GetPostByArea(Guid areaUid)
+        {
+            return FindByCondition(p=>p.area_uid == areaUid);
         }
     }
 }

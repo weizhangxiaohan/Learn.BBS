@@ -14,21 +14,28 @@ namespace learn.bbs.web.Controllers
     {
         private PostBO postBO = new PostBO();
 
+        [Route("post/{areaUid}/add")]
+        public ActionResult Add(Guid areaUid)
+        {
+            ViewBag.AreaUid = areaUid;
+            return View("Add");
+        }
+
         [HttpPost]
-        [Route("post/page")]
         public ActionResult Add(AddPostViewModel model)
         {
-            var postDTO = new PostDTO();
+            var postDTO = new PostInfo();
             postDTO.Title = model.Title;
             postDTO.Content = model.Content;
+            postDTO.AreaUid = Guid.Parse(model.AreaUid);
             postBO.PublishPost(postDTO);
 
-            return RedirectToAction("page");
+            return Redirect(string.Format("/post/{0}/page/1",model.AreaUid));
         }
 
         // GET: Post
         public ActionResult List()
-        {
+        {            
             return View();
         }
 
@@ -37,6 +44,14 @@ namespace learn.bbs.web.Controllers
         {
             var model = postBO.GetAllPost().Take(10).ToList();
             return View("List",model);
+        }
+
+        [Route("post/{areaUid}/page/{pageIndex}")]
+        public ActionResult GetPostsOfAreaByPage(Guid areaUid,int pageIndex)
+        {
+            ViewBag.AreaUid = this.ControllerContext.RouteData.Values["areaUid"].ToString();
+            var model = postBO.GetPostByArea(areaUid).Take(10).ToList();
+            return View("List", model);
         }
     }
 }

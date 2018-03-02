@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutBBS.cshtml";
+}
+
+@model learn.bbs.web.Models.AddPostViewModel
+
+<h2>Add</h2>
+
+<form class="container" method="post" action="/post/add">
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.Title)</label>
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.Content)</label>
+        @Html.TextAreaFor(m => m.Content, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Content)
+    </div>
+    <button type="submit" class="btn btn-success">保存</button>
+
+    <div style="display:none">
+        <input type="hidden" name="areaUid" value="@ViewBag.AreaUid" />
+    </div>
+</form>
+

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace learn.bbs.bl
 {
-    public class AreaBO
+    public class AreaDO
     {
         private AreaDAO areaDAO = new AreaDAO();
 

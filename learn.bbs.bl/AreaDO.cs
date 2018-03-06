@@ -12,9 +12,10 @@ namespace learn.bbs.bl
     {
         private AreaDAO areaDAO = new AreaDAO();
 
-        public IList<bbs_area> GetAllArea()
+        public IQueryable<bbs_area> GetAllArea()
         {
-            return areaDAO.GetAllArea().ToList();
+            //return areaDAO.GetAllArea().ToList();
+            return areaDAO.GetAllArea();
         }
 
         public IList<bbs_area> FindByCondition(Func<bbs_area, bool> f)

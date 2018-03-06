@@ -17,10 +17,21 @@ namespace learn.bbs.web.Controllers
         [HttpPost]
         public ActionResult Search(string area_name,byte? area_status)
         {
-            var model = areaBO.FindByCondition(area => area.area_name.Contains(area_name))
-                .Where(a => a.area_status == area_status)
-                .Take(_pageSize).ToList();
-            return View("List", model);
+            //var model = areaBO.FindByCondition(area => area.area_name.Contains(area_name))
+            //    .Where(a => a.area_status == area_status)
+            //    .Take(_pageSize)
+            //    .ToList();
+            var model = areaBO.GetAllArea();
+            if (!string.IsNullOrEmpty(area_name))
+            {
+                model = model.Where(area => area.area_name.Contains(area_name));
+            }
+            if (area_status != null)
+            {
+                model = model.Where(a => a.area_status == area_status);
+            }
+            model = model.Take(10);
+            return PartialView("_ListPartView", model.ToList());
         }
 
         [Route("area/page/{index:int?}")]
@@ -28,7 +39,11 @@ namespace learn.bbs.web.Controllers
         {
             ViewBag.Title = "一页主题";
 
-            var model = areaBO.GetAllArea().OrderByDescending(a => a.last_modify_time).Skip((index - 1) * _pageSize).Take(_pageSize).ToList();
+            var model = areaBO.GetAllArea()
+                .OrderByDescending(a => a.last_modify_time)
+                .Skip((index - 1) * _pageSize)
+                .Take(_pageSize)
+                .ToList();
             return View("List", model);
         }
 

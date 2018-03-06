@@ -1,0 +1,40 @@
+﻿
+@using learn.bbs.dal.EfModel
+@model IList<bbs_area>
+
+<table id="table_list" class="table table-striped table-bordered">
+    <tr>
+        <th><input type="checkbox" class="checkbox-inline" /></th>
+        <th>主题名</th>
+        <th>开放时间</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>创建者</th>
+        <th>操作</th>
+    </tr>
+    @foreach (bbs_area item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" class="checkbox-inline" value="@item.area_uid" /></td>
+            <td>@item.area_name</td>
+            <td>@((item.begin_time.HasValue ? item.begin_time.Value.ToString("yyyy-MM-dd") : "") + "到" + (item.end_time.HasValue ? item.end_time.Value.ToString("yyyy-MM-dd") : ""))</td>
+            @{
+                var textStatus = string.Empty;
+                switch (item.area_status)
+                {
+                    case 1:
+                        textStatus = "草稿";
+                        break;
+                    case 2:
+                        textStatus = "发布";
+                        break;
+
+                }
+            }
+            <td>@textStatus</td>
+            <td>@item.last_modify_time</td>
+            <td>@item.creator</td>
+            <td><a href="/area/edit">编辑</a></td>
+        </tr>
+    }
+</table>

@@ -9,9 +9,9 @@ namespace learn.bbs.dal
 {
     public class AreaDAO
     { 
-        public IEnumerable<bbs_area> GetAllArea()
+        public IQueryable<bbs_area> GetAllArea()
         {
-            var areas = BbsDbContext.Instants.bbs_area.Where(a=>a.area_uid != Guid.Empty).ToList();
+            var areas = BbsDbContext.Instants.bbs_area.Where(a=>a.area_uid != Guid.Empty);
             return areas;
         }
 

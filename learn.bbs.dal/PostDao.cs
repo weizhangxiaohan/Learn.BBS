@@ -11,7 +11,7 @@ namespace learn.bbs.dal
     {
         public IEnumerable<bbs_post> GetAllPost()
         {
-            var posts = BbsDbContext.Instants.bbs_post.Where(a => a.post_uid != Guid.Empty).ToList();
+            var posts = BbsDbContext.Instants.bbs_post.Where(a => a.post_uid != Guid.Empty);
             return posts;
         }
 

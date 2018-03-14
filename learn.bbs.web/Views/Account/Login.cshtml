@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url(/Images/login_bg.jpg) no-repeat #f8f6e9;
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="height:200px"></div>
+        <div class="row">            
+            <form action="/account/login" method="post" class="col-lg-offset-4 col-lg-4">
+                <h2 class="text-center">请登录</h2>
+                <div class="form-group">
+                    <label class="form-control">用户名：</label>
+                    <input type="text" id="user_name" name="user_name" class="form-control" placeholder="请输入用户名" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control">密码：</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control">验证码 @Session["LoginValidateCode"]</label>
+                    <input type="text" id="loginValidateCode" name="loginValidateCode" class="form-control" placeholder="请输入验证码" />
+                </div>
+                <button type="submit" class="btn btn-success">登录</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

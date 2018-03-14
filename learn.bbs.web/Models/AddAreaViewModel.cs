@@ -11,9 +11,9 @@ namespace learn.bbs.web.Models
     {
         public string area_url { get; set; }
 
-        [Required(ErrorMessage = "主题名称必填")]
+        [Required(ErrorMessage = "贴吧名称必填")]
         [StringLength(20, ErrorMessage = "{0} 的长度为2到20个字符。", MinimumLength = 2)]
-        [DisplayName("主题名称")]
+        [DisplayName("贴吧名称")]
         public string area_name { get; set; }
 
         [Required]
@@ -34,7 +34,7 @@ namespace learn.bbs.web.Models
         public Nullable<byte> is_allow_reply { get; set; }
 
         [Required]
-        [DisplayName("主题状态啊")]
+        [DisplayName("贴吧状态")]
         public Nullable<byte> area_status { get; set; }
 
         [DisplayName("说明")]

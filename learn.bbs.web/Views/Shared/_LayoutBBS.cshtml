@@ -8,8 +8,14 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div style="padding-left:160px">
-        <img style="height:50px;width:50px" src="~/Images/logo.png" /><span style="font-size:18px;font-weight:bold">learn.com</span>
+    <div style="padding:0 140px;overflow:hidden">
+        <div style="float:left">
+            <img style="height:50px;width:50px" src="~/Images/logo.png" /><span style="font-size:18px;font-weight:bold">learn.com</span>
+        </div>
+        <div style="float:right;padding-top:10px">
+            <span style="font-size:14px;font-weight:bold">@this.User.Identity.Name</span>
+            <a class="" href="/Account/SignOut">退出</a>
+        </div>
     </div>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -23,7 +29,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">后台管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/area/page">BBS</a></li>
+                            <li> <a href="@Url.Action("GetAreasByPage", "Area")"> 贴吧管理 </a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Separated link</a></li>
                         </ul>

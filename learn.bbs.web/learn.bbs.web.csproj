@@ -56,6 +56,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="RouteDebugger">
       <HintPath>..\release\RouteDebugger.dll</HintPath>
     </Reference>
@@ -161,16 +167,19 @@
     <Compile Include="Models\AddAreaViewModel.cs" />
     <Compile Include="Models\AddPostViewModel.cs" />
     <Compile Include="Models\AreaListViewModel.cs" />
+    <Compile Include="Models\PostDetailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\b.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\login_bg.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="login.html" />
     <Content Include="Scripts\bootstrap.js" />
@@ -207,16 +216,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutBBS.cshtml" />
     <Content Include="Views\Area\List.cshtml" />
-    <Content Include="Views\Shared\Pager.cshtml" />
     <Content Include="Views\Area\Add.cshtml" />
     <Content Include="Views\Area\MyAreaList.cshtml" />
     <Content Include="Views\Post\List.cshtml" />
     <Content Include="Views\Post\Add.cshtml" />
     <Content Include="Views\Area\_ListPartView.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Post\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

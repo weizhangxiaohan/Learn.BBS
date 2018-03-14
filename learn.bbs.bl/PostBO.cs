@@ -16,9 +16,9 @@ namespace learn.bbs.bl
 
         private PostDAO postDAO = new PostDAO();
 
-        public IList<bbs_post> GetAllPost()
+        public IEnumerable<bbs_post> GetAllPost()
         {
-            return postDAO.GetAllPost().ToList();
+            return postDAO.GetAllPost();
         }
 
         public IList<bbs_post> FindByCondition(Func<bbs_post, bool> f)
@@ -35,6 +35,13 @@ namespace learn.bbs.bl
             entity.area_uid = dto.AreaUid;
             entity.title = dto.Title;
             entity.content = dto.Content;
+            entity.last_reply_time = DateTime.Now;
+            entity.last_update_time = DateTime.Now;
+            entity.like_times = 0;
+            entity.recommend_times = 0;
+            entity.visit_times = 0;
+            entity.reply_times = 0;
+            entity.star_times = 0;
             postDAO.AddPost(entity);
         }
 

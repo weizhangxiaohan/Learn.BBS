@@ -1,44 +1,27 @@
 ﻿
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "贴吧管理";
 }
 
+@using PagedList;
+@using PagedList.Mvc;
+
+@Styles.Render("~/Content/PagedList.css")
+
 @using learn.bbs.dal.EfModel
-@model IList<bbs_area>
+@model IPagedList<bbs_area>
 
 <div>
-    @*<form class="" action="/area/search" method="post" style="height:70px;border-style:solid;border-width:1px;border-color:#ddd;padding:15px 6px">
-        <div class="form-group col-md-4">
-            <label class="col-lg-4" style="padding-top:6px">主题名称：</label>
-            <div class="col-lg-8">
-                <input type="text" class="form-control form-control-static" id="area_name" name="area_name" placeholder="请输入主题名称">
-            </div>
-        </div>
-        <div class="form-group col-md-4">
-            <label class="col-lg-4" style="padding-top:6px">主题状态：</label>
-            <div class="col-lg-8">
-                <select class="form-control form-control-static" id="area_status" name="area_status">
-                    <option value></option>
-                    <option value="1">草稿</option>
-                    <option value="2">发布</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-3 col-md-offset-1">
-            <button type="submit" class="btn btn-success">搜索</button>
-        </div>
-    </form>*@
-
     @using (Ajax.BeginForm(new AjaxOptions() { Url = "/area/search", UpdateTargetId = "table_list", HttpMethod = "post" }))
     {
         <div class="form-group col-md-4">
-            <label class="col-lg-4" style="padding-top:6px">主题名称：</label>
+            <label class="col-lg-4" style="padding-top:6px">贴吧名称：</label>
             <div class="col-lg-8">
                 <input type="text" class="form-control form-control-static" id="area_name" name="area_name" placeholder="请输入主题名称">
             </div>
         </div>
         <div class="form-group col-md-4">
-            <label class="col-lg-4" style="padding-top:6px">主题状态：</label>
+            <label class="col-lg-4" style="padding-top:6px">贴吧状态：</label>
             <div class="col-lg-8">
                 <select class="form-control form-control-static" id="area_status" name="area_status">
                     <option value></option>
@@ -57,45 +40,47 @@
         <a href="/area/add" class="btn btn-default"> 新增</a>
         <a href="javascript:DeleteAreas()" class="btn btn-default"> 删除</a>
     </div>
-    <table id="table_list" class="table table-striped table-bordered">
-        <tr>
-            <th><input type="checkbox" class="checkbox-inline" /></th>
-            <th>主题名</th>
-            <th>开放时间</th>
-            <th>状态</th>
-            <th>更新时间</th>
-            <th>创建者</th>
-            <th>操作</th>
-        </tr>
-        @foreach (bbs_area item in Model)
-        {
+    @*<div id="table_list">
+        <table class="table table-striped table-bordered">
             <tr>
-                <td><input type="checkbox" class="checkbox-inline" value="@item.area_uid" /></td>
-                <td>@item.area_name</td>
-                <td>@((item.begin_time.HasValue ? item.begin_time.Value.ToString("yyyy-MM-dd") : "") + "到" + (item.end_time.HasValue ? item.end_time.Value.ToString("yyyy-MM-dd") : ""))</td>
-                @{
-                    var textStatus = string.Empty;
-                    switch (item.area_status)
-                    {
-                        case 1:
-                            textStatus = "草稿";
-                            break;
-                        case 2:
-                            textStatus = "发布";
-                            break;
-
-                    }
-                }
-                <td>@textStatus</td>
-                <td>@item.last_modify_time</td>
-                <td>@item.creator</td>
-                <td><a href="/area/edit">编辑</a></td>
+                <th><input type="checkbox" class="checkbox-inline" /></th>
+                <th>贴吧名</th>
+                <th>开放时间</th>
+                <th>状态</th>
+                <th>更新时间</th>
+                <th>创建者</th>
+                <th>操作</th>
             </tr>
-          }
-    </table>
-    @{
-        Html.RenderPartial("Pager");
-    }
+            @foreach (bbs_area item in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" class="checkbox-inline" value="@item.area_uid" /></td>
+                    <td>@item.area_name</td>
+                    <td>@((item.begin_time.HasValue ? item.begin_time.Value.ToString("yyyy-MM-dd") : "") + "到" + (item.end_time.HasValue ? item.end_time.Value.ToString("yyyy-MM-dd") : ""))</td>
+                    @{
+                        var textStatus = string.Empty;
+                        switch (item.area_status)
+                        {
+                            case 1:
+                                textStatus = "草稿";
+                                break;
+                            case 2:
+                                textStatus = "发布";
+                                break;
+
+                        }
+                    }
+                    <td>@textStatus</td>
+                    <td>@item.last_modify_time</td>
+                    <td>@item.creator</td>
+                    <td><a href="/area/edit">编辑</a></td>
+                </tr>
+            }
+        </table>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("GetAreasByPage", new { pageIndex = page }))
+    </div>*@
+
+    @Html.Partial("_ListPartView")
 </div>
 
 <script type="text/javascript">

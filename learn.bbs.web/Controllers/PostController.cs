@@ -56,5 +56,21 @@ namespace learn.bbs.web.Controllers
             var model = postBO.GetPostByArea(areaUid).Take(10).ToList();
             return View("List", model);
         }
+
+
+        public ActionResult Detail(Guid postUid)
+        {
+            var entity = postBO.GetAllPost()
+                .AsQueryable()
+                .Where(p => p.post_uid == postUid)
+                .FirstOrDefault();
+
+            var vm = new PostDetailViewModel();
+            vm.Title = entity.title;
+            vm.Content = entity.content;
+            vm.Author = entity.creator;
+
+            return View("Detail", vm);
+        }
     }
 }

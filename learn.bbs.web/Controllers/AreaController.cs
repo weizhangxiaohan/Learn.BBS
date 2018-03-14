@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace learn.bbs.web.Controllers
 {
@@ -15,7 +17,7 @@ namespace learn.bbs.web.Controllers
         private static int _pageSize = 10;
 
         [HttpPost]
-        public ActionResult Search(string area_name,byte? area_status)
+        public ActionResult Search(string area_name, byte? area_status,int pageIndex = 1)
         {
             //var model = areaBO.FindByCondition(area => area.area_name.Contains(area_name))
             //    .Where(a => a.area_status == area_status)
@@ -30,29 +32,27 @@ namespace learn.bbs.web.Controllers
             {
                 model = model.Where(a => a.area_status == area_status);
             }
-            model = model.Take(10);
-            return PartialView("_ListPartView", model.ToList());
+            model = model.OrderByDescending(a => a.create_time);
+
+            return PartialView("_ListPartView", model.ToPagedList(pageIndex, _pageSize));
         }
 
-        [Route("area/page/{index:int?}")]
-        public ActionResult GetAreasByPage(int index = 1)
+        public ActionResult GetAreasByPage(int pageIndex = 1)
         {
-            ViewBag.Title = "一页主题";
-
             var model = areaBO.GetAllArea()
                 .OrderByDescending(a => a.last_modify_time)
-                .Skip((index - 1) * _pageSize)
-                .Take(_pageSize)
-                .ToList();
+                .ToPagedList(pageIndex, _pageSize);
             return View("List", model);
         }
 
         [Route("area/mine/{index:int?}")]
         public ActionResult GetMyAreasByPage(int index = 1)
         {
-            ViewBag.Title = "我的主题";
-
-            var model = areaBO.GetAllArea().OrderByDescending(a => a.last_modify_time).Skip((index - 1) * _pageSize).Take(_pageSize).ToList();
+            var model = areaBO.GetAllArea()
+                .OrderByDescending(a => a.last_modify_time)
+                .Skip((index - 1) * _pageSize)
+                .Take(_pageSize)
+                .ToList();
             return View("MyAreaList", model);
         }
 

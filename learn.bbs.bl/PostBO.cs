@@ -31,7 +31,7 @@ namespace learn.bbs.bl
             var entity = new bbs_post();
             entity.post_uid = Guid.NewGuid();
             entity.create_time = DateTime.Now;
-            entity.creator = "";
+            entity.creator = dto.Creator;
             entity.area_uid = dto.AreaUid;
             entity.title = dto.Title;
             entity.content = dto.Content;

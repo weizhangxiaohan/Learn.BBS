@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace learn.bbs.web.Controllers
 {
@@ -30,6 +32,7 @@ namespace learn.bbs.web.Controllers
                 postDTO.Title = model.Title;
                 postDTO.Content = model.Content;
                 postDTO.AreaUid = Guid.Parse(model.AreaUid);
+                postDTO.Creator = this.User.Identity.Name;
                 postBO.PublishPost(postDTO);
             }
 
@@ -43,17 +46,16 @@ namespace learn.bbs.web.Controllers
         }
 
         [Route("post/page")]
-        public ActionResult GetPostsByPage()
+        public ActionResult GetPostsByPage(int pageIndex)
         {
-            var model = postBO.GetAllPost().Take(10).ToList();
+            var model = postBO.GetAllPost().OrderByDescending(p => p.last_reply_time).ToPagedList(pageIndex,10);
             return View("List", model);
         }
 
-        [Route("post/{areaUid}/page/{pageIndex}")]
         public ActionResult GetPostsOfAreaByPage(Guid areaUid, int pageIndex)
         {
-            ViewBag.AreaUid = this.ControllerContext.RouteData.Values["areaUid"].ToString();
-            var model = postBO.GetPostByArea(areaUid).Take(10).ToList();
+            //ViewBag.AreaUid = this.ControllerContext.HttpContext.Request.QueryString[""];
+            var model = postBO.GetPostByArea(areaUid).OrderByDescending(p => p.last_reply_time).ToPagedList(pageIndex, 10);
             return View("List", model);
         }
 
@@ -69,6 +71,7 @@ namespace learn.bbs.web.Controllers
             vm.Title = entity.title;
             vm.Content = entity.content;
             vm.Author = entity.creator;
+            vm.CreateTime = entity.create_time;
 
             return View("Detail", vm);
         }

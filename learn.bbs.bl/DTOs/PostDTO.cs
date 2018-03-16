@@ -11,5 +11,7 @@ namespace learn.bbs.bl.DTOs
         public Guid AreaUid { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string Creator { get; set; }
+        public Guid CreatorUid { get; set; }
     }
 }

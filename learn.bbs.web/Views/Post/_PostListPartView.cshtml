@@ -1,0 +1,27 @@
+﻿@using learn.bbs.dal.EfModel;
+@model IPagedList<bbs_post>
+
+
+
+<div id="post_list" class="row">
+    <div class="col-lg-12 list-group">
+        @{
+            foreach (bbs_post post in Model)
+            {
+                <div class="list-group-item row" style="padding:10px">
+                    <div class="col-lg-8">
+                        <a href="@Url.Action("detail",new { postUid = post.post_uid})">@post.title</a>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        <a href="#">@post.creator</a>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        @post.create_time
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("GetPostsOfAreaByPage", new { pageIndex = page, areaUid = Model.First().area_uid }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "post_list" }))
+</div>

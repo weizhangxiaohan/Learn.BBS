@@ -19,7 +19,7 @@
                 Output.Write("<div class='row' index='qwer'>");
             }
             <div class="col-lg-3">
-                <a href="/post/@item.area_uid/page/1">
+                <a href="@Url.Action("GetPostsOfAreaByPage", "Post",new { areaUid= item.area_uid,pageIndex = 1 })">
                     <img src="~/Images/logo.png" />
                     @item.area_name
                 </a>

@@ -3,32 +3,18 @@
     ViewBag.Title = "List";
 }
 @using learn.bbs.dal.EfModel;
-@model IList<bbs_post>
+@model IPagedList<bbs_post>
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 col-lg-offset-8 pull-right"><a href="/post/@ViewBag.AreaUid/add">我要发帖</a></div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12 list-group">
-            @{
-                foreach (bbs_post post in Model)
-                {
-                    <div class="list-group-item container" style="padding:5px">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <a href="@Url.Action("detail",new { postUid = post.post_uid})">@post.title</a> 
-                            </div>
-                            <div class="col-lg-4">
-                                <a href="#">@post.creator</a>
-                            </div>
-                        </div>                        
-                    </div>
-                }
-            }
+        <div class="col-lg-4 col-lg-offset-8 pull-right text-right">
+            <a class="btn btn-default" href="/post/@ViewBag.AreaUid/add">我要发帖</a>
         </div>
     </div>
+
+   @{
+       Html.RenderPartial("_PostListPartView");
+   }
 </div>
 
 

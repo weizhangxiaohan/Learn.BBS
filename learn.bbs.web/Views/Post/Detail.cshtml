@@ -8,14 +8,14 @@
 
 
 <div class="container">
-    <div class="row" style="padding:5px;border-color:gray;border-width:1px;border-style:solid ">
+    <div class="row" style="padding:5px;min-height:30px;border-color:gray;border-width:1px;border-style:solid">
         <div class="col-lg-12">@Model.Title</div>
     </div>
-    <div class="row" style="padding:5px;border-color:gray;border-width:1px;border-style:solid ">
-        <div class="col-lg-12">@Model.Content</div>
-    </div>
-
-    <div style="padding:5px;border-color:gray;border-width:1px;border-style:solid ">
-        55
+    <div class="row" style="padding:5px;min-height:100px;border-color:gray;border-width:1px;border-style:solid">
+        <div class="col-lg-10">@Model.Content</div>
+        <div class="col-lg-2">
+            <div class="col-lg-12 text-right" style="margin-bottom:50px">@Model.Author</div>
+            <div class="col-lg-12 text-right">@Model.CreateTime</div>
+        </div>
     </div>
 </div>

@@ -223,6 +223,7 @@
     <Content Include="Views\Area\_ListPartView.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Post\Detail.cshtml" />
+    <Content Include="Views\Post\_PostListPartView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

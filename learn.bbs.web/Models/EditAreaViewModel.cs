@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace learn.bbs.web.Models
 {
-    public class AddAreaViewModel
+    public class EditAreaViewModel
     {
+        [Required]
+        public Guid AreaUid { get; set; }
+
         public string AreaUrl { get; set; }
 
         [Required(ErrorMessage = "贴吧名称必填")]
@@ -17,7 +20,7 @@ namespace learn.bbs.web.Models
         public string AreaName { get; set; }
 
         [Required]
-        [DataType(DataType.Date,ErrorMessage = "请输入日期")]
+        [DataType(DataType.Date, ErrorMessage = "请输入日期")]
         [DisplayName("开始时间")]
         public Nullable<System.DateTime> BeginTime { get; set; }
 
@@ -31,14 +34,14 @@ namespace learn.bbs.web.Models
         public Nullable<byte> AppraiseType { get; set; }
 
         [Required]
-        public Nullable<byte> IsAllowReply { get; set; }
+        public bool IsAllowReply { get; set; }
 
         [Required]
         [DisplayName("贴吧状态")]
         public Nullable<byte> AreaStatus { get; set; }
 
         [DisplayName("说明")]
-        [StringLength(400,ErrorMessage ="长度不能超过400个字符")]
+        [StringLength(400, ErrorMessage = "长度不能超过400个字符")]
         public string Remark { get; set; }
     }
 }

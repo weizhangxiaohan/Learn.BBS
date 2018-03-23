@@ -7,9 +7,9 @@
 @model PostDetailViewModel
 
 
-<div class="container">
+<div class="container" style="min-height:500px">
     <div class="row" style="padding:5px;min-height:30px;border-color:gray;border-width:1px;border-style:solid">
-        <div class="col-lg-12">@Model.Title</div>
+        <div class="col-lg-11">@Model.Title</div> <div class="col-lg-1 text-center"><a class="btn btn-default" href="@Url.Action("delete",new { postUid = Model.PostUid,areaUid = Model.AreaUid})">删除</a></div>
     </div>
     <div class="row" style="padding:5px;min-height:100px;border-color:gray;border-width:1px;border-style:solid">
         <div class="col-lg-10">@Model.Content</div>

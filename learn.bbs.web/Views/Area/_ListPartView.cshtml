@@ -35,7 +35,7 @@
                 <td>@textStatus</td>
                 <td>@item.last_modify_time</td>
                 <td>@item.creator</td>
-                <td><a href="/area/edit">编辑</a></td>
+                <td><a href="@Url.Action("edit",new { areaUid = item.area_uid })">编辑</a></td>
             </tr>
         }
     </table>

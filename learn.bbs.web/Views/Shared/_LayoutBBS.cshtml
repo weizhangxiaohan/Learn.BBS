@@ -8,11 +8,14 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div style="padding:0 140px;overflow:hidden">
+    <div style="overflow:hidden">
+        <div id="div_weather" class="text-center" style="float:left;padding:14px 20px">
+
+        </div>
         <div style="float:left">
             <img style="height:50px;width:50px" src="~/Images/logo.png" /><span style="font-size:18px;font-weight:bold">learn.com</span>
         </div>
-        <div style="float:right;padding-top:10px">
+        <div style="float:right;padding-top:10px;padding-right:140px;">
             <span style="font-size:14px;font-weight:bold">@this.User.Identity.Name</span>
             <a class="" href="/Account/SignOut">退出</a>
         </div>
@@ -23,7 +26,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:140px">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/home/index">首页</a></li>
-                    <li><a href="/area/mine">分享专区</a></li>
+                    <li><a href="/area/mine">我的贴吧</a></li>
                     <li><a href="#">联系我们</a></li>
                     <li><a href="#">关于</a></li>
                     <li class="dropdown">
@@ -56,5 +59,36 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "/home/GetWeather",
+                data: "",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    data = JSON.parse(data);
+                    var city = data.results[0].location.name;
+                    var text = data.results[0].now.text;
+                    var temperature = data.results[0].now.temperature;
+                    $("#div_weather").html(city + ": " + text + "&nbsp;" + temperature + "&#8451;");
+                }
+            });
+        });
+
+
+    </script>
+    
+    @*<script type="text/javascript" src="https://api.seniverse.com/v3/weather/now.json?location=深圳&ts=1443079775&ttl=30&uid=U0995D22B0&sig=[your_signature]&callback=showWeather"></script>*@
+    <script type="text/javascript">
+        function showWeather(data) {
+            var city = data.results[0].location.name;
+            var text = data.results[0].now.text;
+            var temperature = data.results[0].now.temperature;
+            alert(city + text + temperature);
+        }
+    </script>
 </body>
 </html>

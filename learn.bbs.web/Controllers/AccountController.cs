@@ -11,6 +11,7 @@ namespace learn.bbs.web.Controllers
     {
         private const string KEY_SESSION_LOGIN_VALIDATE_CODE = "LoginValidateCode";
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             Session[KEY_SESSION_LOGIN_VALIDATE_CODE] = new Random().Next(10000).ToString("0000");
@@ -18,6 +19,7 @@ namespace learn.bbs.web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(string user_name,string password,string loginValidateCode)
         {
             object code = Session[KEY_SESSION_LOGIN_VALIDATE_CODE];

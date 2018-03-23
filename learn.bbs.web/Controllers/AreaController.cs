@@ -37,6 +37,7 @@ namespace learn.bbs.web.Controllers
             return PartialView("_ListPartView", model.ToPagedList(pageIndex, _pageSize));
         }
 
+        [Authorize(Users = "admin")]
         public ActionResult GetAreasByPage(int pageIndex = 1)
         {
             var model = areaBO.GetAllArea()
@@ -68,22 +69,63 @@ namespace learn.bbs.web.Controllers
             {
                 var area = new bbs_area();
                 area.area_uid = Guid.NewGuid();
-                area.appraise_type = model.appraise_type;
-                area.area_name = model.area_name;
-                area.area_status = model.area_status;
-                area.area_url = model.area_url;
-                area.begin_time = model.begin_time;
-                area.end_time = model.end_time;
+                area.appraise_type = model.AppraiseType;
+                area.area_name = model.AreaName;
+                area.area_status = model.AreaStatus;
+                area.area_url = model.AreaUrl;
+                area.begin_time = model.BeginTime;
+                area.end_time = model.EndTime;
                 area.creator = this.User.Identity.Name;
                 area.create_time = DateTime.Now;
                 area.last_modify_time = DateTime.Now;
                 area.is_allow_reply = 1;
                 area.post_count = 0;
-                area.remark = model.remark;
+                area.remark = model.Remark;
                 areaBO.Add(area);
             }
 
-            return RedirectToAction("page", new { index = 1 });
+            return RedirectToAction("GetAreasByPage", new { pageIndex = 1 });
+        }
+
+        public ActionResult Edit(Guid areaUid)
+        {
+            var entity = areaBO.FindByCondition(a=>a.area_uid == areaUid).First();
+            var vm = new EditAreaViewModel();
+            vm.AreaUid = entity.area_uid;
+            vm.AreaName = entity.area_name;
+            vm.AppraiseType = entity.appraise_type;
+            vm.AreaStatus = entity.area_status;
+            vm.AreaUrl = entity.area_url;
+            vm.BeginTime = entity.begin_time;
+            vm.EndTime = entity.end_time;
+            vm.IsAllowReply = entity.is_allow_reply == 1;
+            vm.Remark = entity.remark;
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditAreaViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var area = new bbs_area();
+                area.area_uid = model.AreaUid;
+                area.appraise_type = model.AppraiseType;
+                area.area_name = model.AreaName;
+                area.area_status = model.AreaStatus;
+                area.area_url = model.AreaUrl;
+                area.begin_time = model.BeginTime;
+                area.end_time = model.EndTime;
+                area.creator = this.User.Identity.Name;
+                area.create_time = DateTime.Now;
+                area.last_modify_time = DateTime.Now;
+                area.is_allow_reply = (byte)(model.IsAllowReply ? 1 : 2);
+                area.post_count = 0;
+                area.remark = model.Remark;
+                areaBO.Edit(area);
+            }
+
+            return RedirectToAction("GetAreasByPage", new { pageIndex = 1 });
         }
 
         [HttpPost]
@@ -96,5 +138,7 @@ namespace learn.bbs.web.Controllers
             }
             return RedirectToAction("page", new { index = 1 });
         }
+
+
     }
 }

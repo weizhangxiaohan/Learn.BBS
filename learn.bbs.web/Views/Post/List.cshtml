@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-lg-offset-8 pull-right text-right">
-            <a class="btn btn-default" href="/post/@ViewBag.AreaUid/add">我要发帖</a>
+            <a class="btn btn-default" href="@Url.Action("add",new { areaUid = ViewBag.AreaUid})">我要发帖</a>
         </div>
     </div>
 

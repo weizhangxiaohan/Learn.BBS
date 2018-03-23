@@ -16,11 +16,10 @@ namespace learn.bbs.web.Controllers
     {
         private PostBO postBO = new PostBO();
 
-        [Route("post/{areaUid}/add")]
         public ActionResult Add(Guid areaUid)
         {
             ViewBag.AreaUid = areaUid;
-            return View("Add");
+            return View();
         }
 
         [HttpPost]
@@ -36,7 +35,7 @@ namespace learn.bbs.web.Controllers
                 postBO.PublishPost(postDTO);
             }
 
-            return Redirect(string.Format("/post/{0}/page/1", model.AreaUid));
+            return RedirectToAction("GetPostsOfAreaByPage",new { areaUid = model.AreaUid,pageIndex =1 });
         }
 
         // GET: Post
@@ -54,7 +53,7 @@ namespace learn.bbs.web.Controllers
 
         public ActionResult GetPostsOfAreaByPage(Guid areaUid, int pageIndex)
         {
-            //ViewBag.AreaUid = this.ControllerContext.HttpContext.Request.QueryString[""];
+            ViewBag.AreaUid = this.ControllerContext.HttpContext.Request.QueryString["areaUid"];
             var model = postBO.GetPostByArea(areaUid).OrderByDescending(p => p.last_reply_time).ToPagedList(pageIndex, 10);
             return View("List", model);
         }
@@ -68,12 +67,21 @@ namespace learn.bbs.web.Controllers
                 .FirstOrDefault();
 
             var vm = new PostDetailViewModel();
+            vm.PostUid = entity.post_uid;
+            vm.AreaUid = entity.area_uid;
             vm.Title = entity.title;
             vm.Content = entity.content;
             vm.Author = entity.creator;
             vm.CreateTime = entity.create_time;
 
             return View("Detail", vm);
+        }
+
+        [Authorize(Users = "admin")]
+        public ActionResult Delete(Guid postUid,Guid areaUid)
+        {
+            postBO.Delete(postUid);
+            return RedirectToAction("GetPostsOfAreaByPage" ,new { areaUid = areaUid, pageIndex = 1});
         }
     }
 }

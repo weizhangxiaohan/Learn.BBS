@@ -3,6 +3,7 @@ using learn.bbs.dal.EfModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,14 +19,19 @@ namespace learn.bbs.bl
             return areaDAO.GetAllArea();
         }
 
-        public IList<bbs_area> FindByCondition(Func<bbs_area, bool> f)
+        public IQueryable<bbs_area> FindByCondition(Expression<Func<bbs_area,  bool>> predicate)
         {
-            return GetAllArea().AsEnumerable().Where<bbs_area>(f).ToList<bbs_area>();
+            return GetAllArea().Where<bbs_area>(predicate);
         }
 
         public void Add(bbs_area area)
         {
             areaDAO.AddArea(area);
+        }
+
+        public void Edit(bbs_area area)
+        {
+            areaDAO.EditArea(area);
         }
 
         public void Delete(Guid areaUid)

@@ -167,6 +167,7 @@
     <Compile Include="Models\AddAreaViewModel.cs" />
     <Compile Include="Models\AddPostViewModel.cs" />
     <Compile Include="Models\AreaListViewModel.cs" />
+    <Compile Include="Models\EditAreaViewModel.cs" />
     <Compile Include="Models\PostDetailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,6 +225,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Post\Detail.cshtml" />
     <Content Include="Views\Post\_PostListPartView.cshtml" />
+    <Content Include="Views\Area\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

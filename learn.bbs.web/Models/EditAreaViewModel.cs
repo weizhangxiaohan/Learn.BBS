@@ -22,23 +22,23 @@ namespace learn.bbs.web.Models
         [Required]
         [DataType(DataType.Date, ErrorMessage = "请输入日期")]
         [DisplayName("开始时间")]
-        public Nullable<System.DateTime> BeginTime { get; set; }
+        public DateTime? BeginTime { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [DisplayName("结束时间")]
-        public Nullable<System.DateTime> EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         [Required]
         [DisplayName("评价方式")]
-        public Nullable<byte> AppraiseType { get; set; }
+        public byte? AppraiseType { get; set; }
 
         [Required]
         public bool IsAllowReply { get; set; }
 
         [Required]
         [DisplayName("贴吧状态")]
-        public Nullable<byte> AreaStatus { get; set; }
+        public byte? AreaStatus { get; set; }
 
         [DisplayName("说明")]
         [StringLength(400, ErrorMessage = "长度不能超过400个字符")]

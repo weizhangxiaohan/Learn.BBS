@@ -37,7 +37,7 @@ namespace learn.bbs.web.Controllers
             return PartialView("_ListPartView", model.ToPagedList(pageIndex, _pageSize));
         }
 
-        [Authorize(Users = "admin")]
+        [Authorize(Users = "admin")]     
         public ActionResult GetAreasByPage(int pageIndex = 1)
         {
             var model = areaBO.GetAllArea()
@@ -78,7 +78,7 @@ namespace learn.bbs.web.Controllers
                 area.creator = this.User.Identity.Name;
                 area.create_time = DateTime.Now;
                 area.last_modify_time = DateTime.Now;
-                area.is_allow_reply = 1;
+                area.is_allow_reply = (byte)(model.IsAllowReply ? 1 : 0);
                 area.post_count = 0;
                 area.remark = model.Remark;
                 areaBO.Add(area);
@@ -129,16 +129,13 @@ namespace learn.bbs.web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(string[] areaUids)
+        public void Delete(string[] areaUids)
         {
             foreach (string item in areaUids)
             {
                 var areaUid = Guid.Parse(item);
                 areaBO.Delete(areaUid);
             }
-            return RedirectToAction("page", new { index = 1 });
         }
-
-
     }
 }

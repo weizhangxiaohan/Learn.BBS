@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace learn.bbs.dal
 {
-    public class BbsDbContext
+    public class DbContextHelper
     {
-        public static BbsContext _context = null;
+        private static BbsContext _context = null;
 
         public static BbsContext Instants
         {

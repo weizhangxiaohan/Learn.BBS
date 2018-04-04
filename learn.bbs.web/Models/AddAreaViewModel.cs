@@ -31,7 +31,7 @@ namespace learn.bbs.web.Models
         public Nullable<byte> AppraiseType { get; set; }
 
         [Required]
-        public Nullable<byte> IsAllowReply { get; set; }
+        public bool IsAllowReply { get; set; }
 
         [Required]
         [DisplayName("贴吧状态")]

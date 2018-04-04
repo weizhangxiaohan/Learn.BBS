@@ -13,7 +13,7 @@ namespace learn.bbs.dal
         {
             get
             {
-                return BbsDbContext.Instants;
+                return DbContextHelper.Instants;
             }
         }
 
@@ -58,6 +58,8 @@ namespace learn.bbs.dal
             var model = DB.bbs_area.FirstOrDefault(a => a.area_uid == areaUid);
             DB.bbs_area.Remove(model);
             DB.SaveChanges();
+
+            DbContextHelper.Instants.Database.ExecuteSqlCommand("delete from bbs_post where area_uid = @p0 ",areaUid);
         }
     }
 }

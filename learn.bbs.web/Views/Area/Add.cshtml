@@ -24,28 +24,28 @@
     <div class="form-group">
         <label >@Html.DisplayNameFor(m=>m.AppraiseType)：</label>
         <label class="radio-inline">
-            <input type="radio" name="appraise_type" id="inlineRadio1" value="1"> 点赞
+            <input type="radio" name="AppraiseType" id="inlineRadio1" value="1"> 点赞
         </label>
         <label class="radio-inline">
-            <input type="radio" name="appraise_type" id="inlineRadio2" value="2"> 评星
+            <input type="radio" name="AppraiseType" id="inlineRadio2" value="2"> 评星
         </label>
         <label class="radio-inline">
-            <input type="radio" name="appraise_type" id="inlineRadio3" value="3"> 无
+            <input type="radio" name="AppraiseType" id="inlineRadio3" value="3"> 无
         </label>
     </div>
     <div class="checkbox">
         <label>开启评论</label>
         <label>
-            <input type="checkbox" id="is_allow_reply" name="is_allow_reply" value="1"> 
+            @Html.CheckBoxFor(m=>m.IsAllowReply)
         </label>
     </div>
     <div class="form-group">
         <label>@Html.DisplayNameFor(m => m.AreaStatus)：</label>
         <label class="radio-inline">
-            <input type="radio" name="area_status" id="inlineRadio1" value="1"> 草稿
+            <input type="radio" name="AreaStatus" id="inlineRadio1" value="1"> 草稿
         </label>
         <label class="radio-inline">
-            <input type="radio" name="area_status" id="inlineRadio2" value="2"> 发布
+            <input type="radio" name="AreaStatus" id="inlineRadio2" value="2"> 发布
         </label>
     </div>
 

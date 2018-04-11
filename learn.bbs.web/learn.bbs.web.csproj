@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Filters\BbsErrorHandlerAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,6 +177,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="ErrorPages\Error1.htm" />
+    <Content Include="ErrorPages\Error.htm" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -201,7 +204,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -255,6 +260,14 @@
     <ProjectReference Include="..\learn.bbs.service\learn.bbs.service.csproj">
       <Project>{c76ccc67-0d8f-4979-b630-a46c9aaf0e25}</Project>
       <Name>learn.bbs.service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\learn.bbs.utility\learn.bbs.utility.csproj">
+      <Project>{b2dd500c-cc5f-483b-98d0-b09f22022f66}</Project>
+      <Name>learn.bbs.utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Learn.Log\Learn.Log.csproj">
+      <Project>{2599f26b-62a1-4fc7-be4e-a0f77a070b27}</Project>
+      <Name>Learn.Log</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

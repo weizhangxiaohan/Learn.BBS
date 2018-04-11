@@ -19,6 +19,8 @@ namespace learn.bbs.web.Controllers
         [HttpPost]
         public ActionResult Search(string area_name, byte? area_status,int pageIndex = 1)
         {
+            throw new Exception("你4谁");
+
             //var model = areaBO.FindByCondition(area => area.area_name.Contains(area_name))
             //    .Where(a => a.area_status == area_status)
             //    .Take(_pageSize)
@@ -59,6 +61,7 @@ namespace learn.bbs.web.Controllers
 
         public ActionResult Add()
         {
+            throw new Exception("我4谁");
             return View();
         }
 

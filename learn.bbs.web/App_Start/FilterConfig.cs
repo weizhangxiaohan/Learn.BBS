@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using learn.bbs.web.Filters;
+using System.Web;
 using System.Web.Mvc;
 
 namespace learn.bbs.web
@@ -7,7 +8,7 @@ namespace learn.bbs.web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new BbsErrorHandlerAttribute());
             filters.Add(new AuthorizeAttribute());
         }
     }

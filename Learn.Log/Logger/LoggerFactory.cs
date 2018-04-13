@@ -8,10 +8,9 @@ namespace Learn.Log.Logger
 {
     public class LoggerFactory
     {
-        public static ILogger CreateFileLogger(string logFilePath)
+        public static ILogger CreateFileLogger(string logRootPath)
         {
-            FileLogger logger =  new FileLogger();
-            logger.LogPath = logFilePath;
+            FileLogger logger =  new FileLogger(logRootPath,true);
             return logger;
         }
     }

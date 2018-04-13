@@ -4,36 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learn.Log
+namespace Learn.Log.LogEntry
 {
-    public class LogInfo
+    public abstract class LogInfo
     {
-        public LogType _type;
+        //private LogType _type;
+        private string _text;
+        private DateTime _createTime;
+        private string _creator;
 
-        public string _text;
-
-        public string Text
+        public virtual string Text
         {
             get
             {
+                if (_text == null)
+                {
+                    StringBuilder builder = new StringBuilder();
+                    builder.AppendLine();
+                    builder.AppendFormat("当前用户：{0}", _creator);
+                    builder.AppendLine();
+                    builder.AppendFormat("当前时间：{0}", _createTime);
+                    _text = builder.ToString();
+                }
                 return _text;
             }
-            set
-            {
-                _text = value;
-            }
+        }
+        //public LogType Type
+        //{
+        //    get
+        //    {
+        //        return _type;
+        //    }
+        //    set
+        //    {
+        //        _type = value;
+        //    }
+        //}
+        public DateTime CreateTime
+        {
+            get => _createTime;
+            set => _createTime = value;
+        }
+        public string Creator
+        {
+            get => _creator;
+            set => _creator = value;
         }
 
-        public LogType Type
+        public override string ToString()
         {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                _type = value;
-            }
+            return Text;
         }
     }
 }

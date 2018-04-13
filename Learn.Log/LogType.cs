@@ -10,6 +10,8 @@ namespace Learn.Log
     {
         Operation,
 
-        Exception
+        Exception,
+
+        General
     }
 }

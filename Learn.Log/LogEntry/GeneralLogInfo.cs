@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Learn.Log.LogEntry
 {
-    public class GeneralLogInfo
+    public class GeneralLogInfo : LogInfo
     {
+        public string Message { get; set; }
 
+        public override string Text
+        {
+            get
+            {
+                return Message + base.Text;
+            }
+        }
     }
 }

@@ -11,16 +11,28 @@ namespace Learn.Log.LogEntry
         private string _exceptionMessage;
         private string _exceptionStackTrace;
 
-        public override string ToString()
+        public string ExceptionMessage
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine();
-            builder.AppendFormat("在{0}发生异常：{1}",this.CreateTime,this._exceptionMessage);
-            builder.AppendLine();
-            builder.AppendFormat(this._exceptionStackTrace);
-            builder.AppendLine();
-            builder.Append("------------------------------------------------------------");
-            return builder.ToString();
+            get => _exceptionMessage;
+            set => _exceptionMessage = value;
+        }
+        public string ExceptionStackTrace
+        {
+            get => _exceptionStackTrace;
+            set => _exceptionStackTrace = value;
+        }
+
+        public override string Text
+        {
+            get
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.AppendLine();
+                builder.AppendFormat("在{0}发生异常：{1}", this.CreateTime, this.ExceptionMessage);
+                builder.AppendLine();
+                builder.AppendFormat(this.ExceptionStackTrace);
+                return builder.ToString() + base.Text;
+            }
         }
     }
 }

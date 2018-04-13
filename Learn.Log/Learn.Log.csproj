@@ -40,10 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogEntry\GeneralLogInfo.cs" />
+    <Compile Include="LogEntry\OperationLogInfo.cs" />
+    <Compile Include="LogEntry\ExceptionLogInfo.cs" />
     <Compile Include="Logger\FileLogger.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\LoggerFactory.cs" />
-    <Compile Include="LogInfo.cs" />
+    <Compile Include="LogEntry\LogInfo.cs" />
     <Compile Include="LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

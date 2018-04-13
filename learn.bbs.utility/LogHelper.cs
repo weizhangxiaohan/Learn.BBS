@@ -1,4 +1,5 @@
 ﻿using Learn.Log;
+using Learn.Log.LogEntry;
 using Learn.Log.Logger;
 using System;
 using System.Collections.Generic;
@@ -28,17 +29,29 @@ namespace learn.bbs.utility
             }
         }
 
-        public static void LogToFile(LogInfo logInfo)
+
+        public static void LogToFile(string message)
+        {
+            GeneralLogInfo logInfo = new GeneralLogInfo();
+            logInfo.Message = message;
+            logInfo.CreateTime = DateTime.Now;
+            LogToFile(logInfo);
+        }
+
+        public static void LogToFile(Exception ex)
+        {
+            ExceptionLogInfo logInfo = new ExceptionLogInfo();
+            logInfo.ExceptionMessage = ex.Message;
+            logInfo.ExceptionStackTrace = ex.StackTrace;
+            logInfo.CreateTime = DateTime.Now;
+            LogToFile(logInfo);
+        }
+
+
+        private static void LogToFile(LogInfo logInfo)
         {
             FileLogger.WriteLog(logInfo);
         }
 
-        public static void LogToFile(string text, LogType type)
-        {
-            LogInfo logInfo = new LogInfo();
-            logInfo.Text = text;
-            logInfo.Type = type;
-            LogToFile(logInfo);
-        }
     }
 }

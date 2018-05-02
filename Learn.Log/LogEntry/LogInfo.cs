@@ -8,7 +8,7 @@ namespace Learn.Log.LogEntry
 {
     public abstract class LogInfo
     {
-        //private LogType _type;
+        private LogType _type;
         private string _text;
         private DateTime _createTime;
         private string _creator;
@@ -29,17 +29,13 @@ namespace Learn.Log.LogEntry
                 return _text;
             }
         }
-        //public LogType Type
-        //{
-        //    get
-        //    {
-        //        return _type;
-        //    }
-        //    set
-        //    {
-        //        _type = value;
-        //    }
-        //}
+        public virtual LogType Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
         public DateTime CreateTime
         {
             get => _createTime;
@@ -51,6 +47,7 @@ namespace Learn.Log.LogEntry
             set => _creator = value;
         }
 
+        public abstract string GetDirectoryName();
         public override string ToString()
         {
             return Text;

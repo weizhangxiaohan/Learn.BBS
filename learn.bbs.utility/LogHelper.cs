@@ -48,7 +48,7 @@ namespace learn.bbs.utility
         }
 
 
-        private static void LogToFile(LogInfo logInfo)
+        public static void LogToFile(LogInfo logInfo)
         {
             FileLogger.WriteLog(logInfo);
         }

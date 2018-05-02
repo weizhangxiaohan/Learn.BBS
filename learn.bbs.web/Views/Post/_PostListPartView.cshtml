@@ -12,8 +12,8 @@
                     <div class="col-lg-8">
                         <a href="@Url.Action("detail",new { postUid = post.post_uid})">@post.title</a>
                     </div>
-                    <div class="col-lg-2 text-center">
-                        <a href="#">@post.creator</a>
+                    <div class="col-lg-2 text-left">
+                        by <a href="#">@post.creator</a>
                     </div>
                     <div class="col-lg-2 text-center">
                         @post.create_time

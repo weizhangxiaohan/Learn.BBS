@@ -1,5 +1,6 @@
 ﻿using learn.bbs.utility;
 using Learn.Log;
+using Learn.Log.LogEntry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,17 @@ namespace learn.bbs.web.Filters
             builder.AppendLine();
             //builder.AppendFormat("{0}访问了{1}",filterContext.HttpContext.User.Identity.Name,filterContext.HttpContext.Request.Url);
             builder.AppendLine();
-            builder.AppendFormat("当前线程ID：{0}",Thread.CurrentThread.ManagedThreadId);
+            builder.AppendFormat("当前线程ID：{0}",Thread.CurrentThread.ManagedThreadId + Thread.CurrentThread.Name);
             builder.AppendLine();
             builder.Append("--------------------------------------------------------");
             builder.AppendLine();
-
             LogHelper.LogToFile(builder.ToString());
+
+            OperationLogInfo logInfo = new OperationLogInfo();
+            logInfo.Creator = filterContext.HttpContext.User.Identity.Name;
+            logInfo.CreateTime = DateTime.Now;
+            logInfo.TargetUrl = filterContext.HttpContext.Request.Url.OriginalString;
+            LogHelper.LogToFile(logInfo);
         }
     }
 }

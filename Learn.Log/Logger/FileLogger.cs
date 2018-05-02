@@ -30,29 +30,37 @@ namespace Learn.Log.Logger
                     {
                         while (true)
                         {
-                            StringBuilder builder = new StringBuilder();
+                            var dictionary = new Dictionary<string, StringBuilder>();                           
+
                             for (int i = 0; i < 100; i++)
                             {
                                 if (_cacheQueue.Count > 0)
                                 {
                                     LogInfo logInfo = _cacheQueue.Dequeue();
+                                    string store_path = GetDetailPath(logInfo);
+                                    if (!dictionary.ContainsKey(store_path))
+                                    {
+                                        dictionary.Add(store_path, new StringBuilder());
+                                    }
+                                    StringBuilder builder = dictionary[store_path];
                                     builder.Append(logInfo.Text);
                                     builder.AppendLine();
                                     builder.Append("---------------------------------------------------------");
                                 }
                             }
 
-                            File.AppendAllText("", builder.ToString(), Encoding.UTF8);
+                            foreach (var item in dictionary)
+                            {
+                                File.AppendAllText(item.Key,item.Value.ToString(), Encoding.UTF8);
+                            }
 
-                            builder.Clear();
-
-                            Thread.Sleep(3000);
+                            Thread.Sleep(5000);
                         }
                     }
                     catch (Exception ex)
                     {
                         string text = "\r\n" + "发生异常，后台日志线程已退出：" + "\r\n" + ex.ToString() + "\r\n";
-                        File.AppendAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Log\\ThreadLog\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", text, System.Text.Encoding.UTF8);
+                        File.AppendAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Log\\ThreadLog\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", text, Encoding.UTF8);
                     }
 
                 });
@@ -85,25 +93,13 @@ namespace Learn.Log.Logger
         }
 
         /// <summary>
-        /// 按日志类型得到存储的具体物理路径
+        /// 按得到日志存储具体物理路径
         /// </summary>
-        /// <param name="logType">日志类型</param>
+        /// <param name="logInfo">日志</param>
         /// <returns>具体路径</returns>
         private string GetDetailPath(LogInfo logInfo)
         {
-            string logDetailPath;
-            if (logInfo is ExceptionLogInfo)
-            {
-                logDetailPath = _logRootPath + "\\Exception\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
-            }
-            else if (logInfo is OperationLogInfo)
-            {
-                logDetailPath = _logRootPath + "\\Operation\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
-            }
-            else
-            {
-                logDetailPath = _logRootPath + "\\General\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
-            }
+            string logDetailPath = _logRootPath + "\\"+ logInfo.GetDirectoryName() + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
             return logDetailPath;
         }
 

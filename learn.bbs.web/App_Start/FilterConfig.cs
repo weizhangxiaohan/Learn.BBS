@@ -8,7 +8,7 @@ namespace learn.bbs.web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new BbsErrorHandlerFilter());
+            filters.Add(new BbsErrorHandlerFilter());
             filters.Add(new AuthorizeAttribute());
             filters.Add(new BbsActionFilter());
         }

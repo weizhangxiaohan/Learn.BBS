@@ -22,6 +22,19 @@ namespace Learn.Log.LogEntry
             set => _exceptionStackTrace = value;
         }
 
+        public override LogType Type
+        {
+            get
+            {
+                return LogType.Exception;
+            }
+        }
+
+        public override string GetDirectoryName()
+        {
+            return "Exception";
+        }
+
         public override string Text
         {
             get

@@ -8,14 +8,71 @@
 
 
 <div class="container" style="min-height:500px">
-    <div class="row" style="padding:5px;min-height:30px;border-color:gray;border-width:1px;border-style:solid">
-        <div class="col-lg-11">@Model.Title</div> <div class="col-lg-1 text-center"><a class="btn btn-default" href="@Url.Action("delete",new { postUid = Model.PostUid,areaUid = Model.AreaUid})">删除</a></div>
+    <div class="row" style="padding:5px;min-height:30px;border-color:green;border-width:1px;border-style:solid">
+        <div class="col-lg-11">@Model.Title</div>
+        <div class="col-lg-1 text-center">
+            <a class="btn btn-default" href="@Url.Action("delete", new { postUid = Model.PostUid, areaUid = Model.AreaUid })">删除</a>
+        </div>
     </div>
-    <div class="row" style="padding:5px;min-height:100px;border-color:gray;border-width:1px;border-style:solid">
+    <div class="row" style="padding:5px;min-height:100px;border-color:green;border-width:1px;border-style:solid">
         <div class="col-lg-10">@Model.Content</div>
         <div class="col-lg-2">
             <div class="col-lg-12 text-right" style="margin-bottom:50px">@Model.Author</div>
             <div class="col-lg-12 text-right">@Model.CreateTime</div>
         </div>
     </div>
+
+    @{
+        foreach (ReplyViewModel item in Model.Replys)
+        {
+            <div class="row" style="padding:5px;min-height:100px;border-color:green;border-width:1px;border-style:solid">
+                <div class="col-lg-10">@item.Content</div>
+                <div class="col-lg-2">
+                    <div class="col-lg-12 text-right" style="margin-bottom:50px">xxx</div>
+                    <div class="col-lg-12 text-right">xxx</div>
+                </div>
+            </div>
+        }
+    }
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <textarea name="reply_content" class="form-control" rows="5"></textarea>
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <button id="btn_post" class="btn-success">发表</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    var global_bbs_post_uid = '@Model.PostUid';
+</script>
+<script type="text/javascript">
+    $("#btn_post").on("click", function () {
+        var content = $("textarea[name='reply_content']").val();
+        var postUid = global_bbs_post_uid;
+
+        var data = {
+            content: content,
+            postUid: postUid
+        };
+
+        $.ajax({
+            url:"/post/reply",
+            type: "post",
+            data: JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                alert("发表成功");
+            },
+            error: function () {
+                alert("发表失败");
+            }
+        });
+    });
+</script>

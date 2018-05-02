@@ -13,5 +13,12 @@ namespace learn.bbs.web.Models
         public string Content { get; set; }
         public string Author { get; set; }
         public DateTime? CreateTime { get; set; }
+
+        public List<ReplyViewModel> Replys { get; set; }
+    }
+
+    public class ReplyViewModel
+    {
+        public string Content { get; set; }
     }
 }

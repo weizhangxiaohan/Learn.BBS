@@ -17,5 +17,18 @@ namespace Learn.Log.LogEntry
                 return Message + base.Text;
             }
         }
+
+        public override LogType Type
+        {
+            get
+            {
+                return LogType.General;
+            }
+        }
+
+        public override string GetDirectoryName()
+        {
+            return "General";
+        }
     }
 }

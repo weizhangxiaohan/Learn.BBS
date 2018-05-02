@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using learn.bbs.utility;
 
 namespace learn.bbs.web.Controllers
 {
@@ -35,7 +36,7 @@ namespace learn.bbs.web.Controllers
                 postBO.PublishPost(postDTO);
             }
 
-            return RedirectToAction("GetPostsOfAreaByPage",new { areaUid = model.AreaUid,pageIndex =1 });
+            return RedirectToAction("GetPostsOfAreaByPage", new { areaUid = model.AreaUid, pageIndex = 1 });
         }
 
         // GET: Post
@@ -47,7 +48,7 @@ namespace learn.bbs.web.Controllers
         [Route("post/page")]
         public ActionResult GetPostsByPage(int pageIndex)
         {
-            var model = postBO.GetAllPost().OrderByDescending(p => p.last_reply_time).ToPagedList(pageIndex,10);
+            var model = postBO.GetAllPost().OrderByDescending(p => p.last_reply_time).ToPagedList(pageIndex, 10);
             return View("List", model);
         }
 
@@ -73,15 +74,30 @@ namespace learn.bbs.web.Controllers
             vm.Content = entity.content;
             vm.Author = entity.creator;
             vm.CreateTime = entity.create_time;
+            vm.Replys = ReplyBO.GetListByPostUid(postUid).Select(a => new ReplyViewModel
+            {
+                Content = a.Content
+            }).ToList();
 
             return View("Detail", vm);
         }
 
         [Authorize(Users = "admin")]
-        public ActionResult Delete(Guid postUid,Guid areaUid)
+        public ActionResult Delete(Guid postUid, Guid areaUid)
         {
             postBO.Delete(postUid);
-            return RedirectToAction("GetPostsOfAreaByPage" ,new { areaUid = areaUid, pageIndex = 1});
+            return RedirectToAction("GetPostsOfAreaByPage", new { areaUid = areaUid, pageIndex = 1 });
+        }
+
+        [HttpPost]
+        public JsonResult Reply(string postUid, string content)
+        {
+            LogHelper.LogToFile(postUid + ":" + content);
+            ReplyBO replyBO = new ReplyBO();
+            replyBO.PostUid = Guid.Parse(postUid);
+            replyBO.Content = content;
+            replyBO.Add();
+            return Json(replyBO);
         }
     }
 }

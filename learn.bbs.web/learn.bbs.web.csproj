@@ -266,6 +266,10 @@
       <Project>{b2dd500c-cc5f-483b-98d0-b09f22022f66}</Project>
       <Name>learn.bbs.utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Learn.Common\Learn.Common.csproj">
+      <Project>{ba94308d-8622-4c97-9f36-92b16f57af29}</Project>
+      <Name>Learn.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Learn.Log\Learn.Log.csproj">
       <Project>{2599f26b-62a1-4fc7-be4e-a0f77a070b27}</Project>
       <Name>Learn.Log</Name>

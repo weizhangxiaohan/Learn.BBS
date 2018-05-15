@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "learn.bbs.web", "learn.bbs.web\learn.bbs.web.csproj", "{D2F6B6A3-58A1-426B-8177-D721B46E6E2C}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Core", "_Core", "{EEDC9BBF-3BF7-4A56-A262-10211F0E9F47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learn.Log", "Learn.Log\Learn.Log.csproj", "{2599F26B-62A1-4FC7-BE4E-A0F77A070B27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Learn.Common", "Learn.Common\Learn.Common.csproj", "{BA94308D-8622-4C97-9F36-92B16F57AF29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,12 +55,17 @@ Global
 		{2599F26B-62A1-4FC7-BE4E-A0F77A070B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2599F26B-62A1-4FC7-BE4E-A0F77A070B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2599F26B-62A1-4FC7-BE4E-A0F77A070B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA94308D-8622-4C97-9F36-92B16F57AF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA94308D-8622-4C97-9F36-92B16F57AF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA94308D-8622-4C97-9F36-92B16F57AF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA94308D-8622-4C97-9F36-92B16F57AF29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2599F26B-62A1-4FC7-BE4E-A0F77A070B27} = {EEDC9BBF-3BF7-4A56-A262-10211F0E9F47}
+		{BA94308D-8622-4C97-9F36-92B16F57AF29} = {EEDC9BBF-3BF7-4A56-A262-10211F0E9F47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {405CD89C-BCC6-451A-91B1-813A08269169}

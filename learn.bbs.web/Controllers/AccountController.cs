@@ -1,5 +1,9 @@
-﻿using System;
+﻿using learn.bbs.utility;
+using Learn.Common;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +18,6 @@ namespace learn.bbs.web.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            Session[KEY_SESSION_LOGIN_VALIDATE_CODE] = new Random().Next(10000).ToString("0000");
             return View("login");
         }
 
@@ -64,6 +67,13 @@ namespace learn.bbs.web.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("login");
+        }
+
+        public ActionResult GetValidateCode()
+        {
+            ValidateCode code = ValidateCodeHelper.GetValidateCode();
+            Session[KEY_SESSION_LOGIN_VALIDATE_CODE] = code.Code;
+            return File(code.Image,"image/jpeg");
         }
     }
 }

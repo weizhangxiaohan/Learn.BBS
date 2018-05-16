@@ -19,9 +19,10 @@ namespace Learn.Common
                 {
                     var generator = new ValidateCodeGenerator()
                     {
-                        ImageWidth = 200,
-                        ImageHeight = 60,
-                        CodeLength = 4
+                        ImageWidth = 100,
+                        ImageHeight = 30,
+                        CodeLength = 4,
+                        FontSize = 24
                     };
                     _default = generator;
                 }
@@ -30,11 +31,12 @@ namespace Learn.Common
             }
         }
 
-
         public int ImageWidth { get; set; }
         public int ImageHeight { get; set; }
 
-        public string Letters { get; set; }
+        public int FontSize { get; set; }
+
+        public string Letters { get; private set; }
         public int CodeLength { get; set; }
 
         private Random r = new Random();
@@ -66,13 +68,13 @@ namespace Learn.Common
             var bitMap = new Bitmap(ImageWidth, ImageHeight);
             var g = Graphics.FromImage(bitMap);
 
-            int ColorR = r.Next(0, 255);
-            int ColorG = r.Next(0, 255);
-            int ColorB = r.Next(0, 255);
+            int ColorR = r.Next(0, 100);
+            int ColorG = r.Next(0, 100);
+            int ColorB = r.Next(0, 100);
 
-            g.FillRectangle(new SolidBrush(Color.FromArgb(ColorR, ColorG, ColorB)), 0, 0, 200, 60);
+            g.FillRectangle(new SolidBrush(Color.FromArgb(ColorR, ColorG, ColorB)), 0, 0, ImageWidth, ImageHeight);
 
-            var font = new Font(FontFamily.GenericSerif, 48, FontStyle.Bold, GraphicsUnit.Pixel);
+            var font = new Font(FontFamily.GenericSerif, FontSize, FontStyle.Bold, GraphicsUnit.Pixel);
             //合法随机显示字符列表
             //将随机生成的字符串绘制到图片上
             for (int i = 0; i < code.Length; i++)
@@ -83,13 +85,13 @@ namespace Learn.Common
                 while (Math.Abs(sR - ColorR) < 35) sR = r.Next(0, 255);
                 while (Math.Abs(sG - ColorG) < 35) sG = r.Next(0, 255);
                 while (Math.Abs(sB - ColorB) < 35) sB = r.Next(0, 255);
-                g.DrawString(code[i].ToString(), font, new SolidBrush(Color.FromArgb(sR, sG, sB)), i * (200 / code.Length - 2), r.Next(0, 15));
+                g.DrawString(code[i].ToString(), font, new SolidBrush(Color.FromArgb(sR, sG, sB)), i * (ImageWidth / code.Length - 2), r.Next(0, 15));
             }
             //生成干扰线条
             var pen = new Pen(new SolidBrush(Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255))), 2);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 3; i++)
             {
-                g.DrawLine(pen, new Point(r.Next(0, 199), r.Next(0, 59)), new Point(r.Next(0, 199), r.Next(0, 59)));
+                g.DrawLine(pen, new Point(r.Next(0, ImageWidth - 1), r.Next(0, ImageHeight - 1)), new Point(r.Next(0, ImageWidth - 1), r.Next(0, ImageHeight - 1)));
             }
             var stream = new System.IO.MemoryStream();
             bitMap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);

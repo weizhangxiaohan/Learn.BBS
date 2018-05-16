@@ -38,13 +38,25 @@ namespace Learn.Log.LogEntry
         }
         public DateTime CreateTime
         {
-            get => _createTime;
-            set => _createTime = value;
+            get
+            {
+                return _createTime;
+            }
+            set
+            {
+                _createTime = value;
+            }
         }
         public string Creator
         {
-            get => _creator;
-            set => _creator = value;
+            get
+            {
+                return _creator;
+            }
+            set
+            {
+                _creator = value;
+            }
         }
 
         public abstract string GetDirectoryName();

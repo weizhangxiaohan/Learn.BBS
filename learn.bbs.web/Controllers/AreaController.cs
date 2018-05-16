@@ -61,7 +61,6 @@ namespace learn.bbs.web.Controllers
 
         public ActionResult Add()
         {
-            throw new Exception("我4谁");
             return View();
         }
 

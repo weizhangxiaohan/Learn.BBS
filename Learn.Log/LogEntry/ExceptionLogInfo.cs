@@ -13,13 +13,25 @@ namespace Learn.Log.LogEntry
 
         public string ExceptionMessage
         {
-            get => _exceptionMessage;
-            set => _exceptionMessage = value;
+            get
+            {
+                return _exceptionMessage;
+            }
+            set
+            {
+                _exceptionMessage = value;
+            }
         }
         public string ExceptionStackTrace
         {
-            get => _exceptionStackTrace;
-            set => _exceptionStackTrace = value;
+            get
+            {
+                return _exceptionStackTrace;
+            }
+            set
+            {
+                _exceptionStackTrace = value;
+            }
         }
 
         public override LogType Type

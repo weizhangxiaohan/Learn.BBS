@@ -31,8 +31,14 @@ namespace Learn.Log.LogEntry
 
         public string TargetUrl
         {
-            get => _targetUrl;
-            set => _targetUrl = value;
+            get
+            {
+                return _targetUrl;
+            }
+            set
+            {
+                _targetUrl = value;
+            }
         }
 
         public override string GetDirectoryName()

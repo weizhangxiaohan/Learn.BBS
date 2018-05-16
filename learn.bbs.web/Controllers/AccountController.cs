@@ -26,7 +26,7 @@ namespace learn.bbs.web.Controllers
         public ActionResult Login(string user_name,string password,string loginValidateCode)
         {
             object code = Session[KEY_SESSION_LOGIN_VALIDATE_CODE];
-            if (code == null || code.ToString() != loginValidateCode)
+            if (code == null || code.ToString().ToLower() != loginValidateCode.ToLower())
             {
                 return RedirectToAction("login");
             }           
@@ -69,6 +69,7 @@ namespace learn.bbs.web.Controllers
             return RedirectToAction("login");
         }
 
+        [AllowAnonymous]
         public ActionResult GetValidateCode()
         {
             ValidateCode code = ValidateCodeHelper.GetValidateCode();

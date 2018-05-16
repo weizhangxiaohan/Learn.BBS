@@ -15,7 +15,7 @@ namespace Learn.Log.Logger
         private bool _enableQueue;
         private Queue<LogInfo> _cacheQueue;
 
-        internal FileLogger (string logRootPath,bool enableQueue)
+        internal FileLogger(string logRootPath, bool enableQueue)
         {
             _logRootPath = logRootPath;
             _enableQueue = enableQueue;
@@ -30,7 +30,7 @@ namespace Learn.Log.Logger
                     {
                         while (true)
                         {
-                            var dictionary = new Dictionary<string, StringBuilder>();                           
+                            var dictionary = new Dictionary<string, StringBuilder>();
 
                             for (int i = 0; i < 100; i++)
                             {
@@ -51,7 +51,7 @@ namespace Learn.Log.Logger
 
                             foreach (var item in dictionary)
                             {
-                                File.AppendAllText(item.Key,item.Value.ToString(), Encoding.UTF8);
+                                File.AppendAllText(item.Key, item.Value.ToString(), Encoding.UTF8);
                             }
 
                             Thread.Sleep(5000);
@@ -69,8 +69,8 @@ namespace Learn.Log.Logger
 
         public string LogRootPath
         {
-            get => _logRootPath;
-            set => _logRootPath = value;
+            get { return _logRootPath; }
+            set { _logRootPath = value; }
         }
 
         public void WriteLog(LogInfo logInfo)
@@ -99,7 +99,7 @@ namespace Learn.Log.Logger
         /// <returns>具体路径</returns>
         private string GetDetailPath(LogInfo logInfo)
         {
-            string logDetailPath = _logRootPath + "\\"+ logInfo.GetDirectoryName() + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+            string logDetailPath = _logRootPath + "\\" + logInfo.GetDirectoryName() + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
             return logDetailPath;
         }
 

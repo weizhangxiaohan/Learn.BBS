@@ -18,5 +18,14 @@ namespace learn.bbs.utility
         {
             return GetValidateCode(ValidateCodeGenerator.Default);
         }
+
+        public static ValidateCode GetValidateCode(int imageHeight,int imageWidth,int codeLength)
+        {
+            var generator = new ValidateCodeGenerator();
+            generator.ImageHeight = imageHeight;
+            generator.ImageWidth = imageWidth;
+            generator.CodeLength = codeLength;
+            return GetValidateCode(generator);
+        }
     }
 }

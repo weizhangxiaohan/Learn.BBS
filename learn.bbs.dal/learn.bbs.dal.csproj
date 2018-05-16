@@ -130,6 +130,7 @@
       <DependentUpon>EfModel.edmx</DependentUpon>
       <LastGenOutput>EfModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Sql\create_table.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

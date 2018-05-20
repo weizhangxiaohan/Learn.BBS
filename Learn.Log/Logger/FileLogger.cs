@@ -60,7 +60,12 @@ namespace Learn.Log.Logger
                     catch (Exception ex)
                     {
                         string text = "\r\n" + "发生异常，后台日志线程已退出：" + "\r\n" + ex.ToString() + "\r\n";
-                        File.AppendAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\Log\\ThreadLog\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", text, Encoding.UTF8);
+                        string directory = System.AppDomain.CurrentDomain.BaseDirectory + "\\Log\\ThreadLog";
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+                        File.AppendAllText(directory + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", text, Encoding.UTF8);
                     }
 
                 });
@@ -99,8 +104,12 @@ namespace Learn.Log.Logger
         /// <returns>具体路径</returns>
         private string GetDetailPath(LogInfo logInfo)
         {
-            string logDetailPath = _logRootPath + "\\" + logInfo.GetDirectoryName() + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
-            return logDetailPath;
+            string logDirectory = _logRootPath + "\\" + logInfo.GetDirectoryName();
+            if (!Directory.Exists(logDirectory))
+            {
+                Directory.CreateDirectory(logDirectory);
+            }
+            return logDirectory + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"; 
         }
 
         private void WriteToFile(List<LogInfo> logs)

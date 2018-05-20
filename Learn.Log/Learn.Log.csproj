@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogEntry\GeneralLogInfo.cs" />
+    <Compile Include="LogEntry\IPersistentToTXT.cs" />
     <Compile Include="LogEntry\OperationLogInfo.cs" />
     <Compile Include="LogEntry\ExceptionLogInfo.cs" />
     <Compile Include="Logger\FileLogger.cs" />

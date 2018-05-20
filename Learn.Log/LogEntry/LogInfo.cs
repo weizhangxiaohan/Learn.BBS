@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Learn.Log.LogEntry
 {
-    public abstract class LogInfo
+    public abstract class LogInfo : IPersistentToTXT
     {
         private LogType _type;
         private string _text;
@@ -59,10 +59,14 @@ namespace Learn.Log.LogEntry
             }
         }
 
-        public abstract string GetDirectoryName();
         public override string ToString()
         {
             return Text;
+        }
+
+        public virtual string GetDirectoryName()
+        {
+            return "Other";
         }
     }
 }
